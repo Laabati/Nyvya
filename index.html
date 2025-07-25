@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" /> 
-  <link rel="manifest" href="/manifest.webmanifest">
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Nyvya IA Phone</title>
-  <!-- Lien vers le manifest que tu as déjà ajouté -->
+  <meta charset="UTF-8" />
   <link rel="manifest" href="/manifest.webmanifest" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nyvya IA Phone</title>
 </head>
 <body>
   <h1>Bienvenue sur Nyvya IA Phone !</h1>
-  <p>Service téléphonique IA — préparez-vous à l’étape suivante.</p>
+  <p>Service téléphonique IA – préparez-vous à l’étape suivante.</p>
 
-  <!-- Ici on ajoutera bientôt le script qui enregistre le service worker -->
+  <!-- *C’EST ICI* qu’on colle le script d’enregistrement du service-worker -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then(reg => console.log('Service-worker enregistré !', reg))
+          .catch(err => console.error('Échec enregistrement :', err));
+      });
+    }
+  </script>
 </body>
 </html>
