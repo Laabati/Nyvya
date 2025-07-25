@@ -10,24 +10,36 @@
   <h1>Bienvenue sur Nyvya IA Phone !</h1>
   <p>Service téléphonique IA – préparez-vous à l’étape suivante.</p>
 
-  <!-- *C’EST ICI* qu’on colle le script d’enregistrement du service-worker -->
+    <!-- C’EST ICI qu’on colle le script d’enregistrement du service-worker -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker.register('/service-worker.js')
-          .then(reg => console.log('Service-worker enregistré !', reg))
+          .then(reg => console.log('ServiceWorker enregistré :', reg))
           .catch(err => console.error('Échec enregistrement :', err));
       });
     }
   </script>
+
   <!-- Bouton Appeler l’IA -->
-<button id="call-btn" style="font-size:1.2em; padding:0.5em 1em; margin-top:1em;">
-  📞 Appeler l’IA
-</button>
-<script>
-  document.getElementById('call-btn').addEventListener('click', () => {
-    alert('Pour l’instant je ne fais rien ; bientôt j’appellerai Twilio !');
-  });
-</script>
+  <button id="call-btn" style="font-size:1.2em; padding:0.5em 1em; margin-top:1em;">
+    📞 Appeler l’IA
+  </button>
+
+  <!-- Script n°1 pour l’alerte “Appel en cours…” -->
+  <script>
+    document.getElementById('call-btn')
+      .addEventListener('click', () => {
+        alert('Appel en cours…');
+      });
+  </script>
+
+  <!-- Script n°2 pour le message “Pour l’instant je ne fais rien” -->
+  <script>
+    document.getElementById('call-btn')
+      .addEventListener('click', () => {
+        alert('Pour l’instant je ne fais rien ; bientôt j’appellerai Twilio !');
+      });
+  </script>
 </body>
 </html>
