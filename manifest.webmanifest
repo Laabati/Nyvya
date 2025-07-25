@@ -1,10 +1,11 @@
 {
   "name": "Nyvya IA Phone",
   "short_name": "NyvyaIA",
-  "start_url": "/?utm_source=homescreen",
+  "start_url": "index.html?utm_source=homescreen",
   "display": "standalone",
   "background_color": "#FFFFFF",
-  "description": "Service téléphonique IA personnalisé",
+  "theme_color": "#FFFFFF",
+  "description": "Service téléphonique IA – appelez votre assistant vocal IA en un clic.",
   "icons": [
     {
       "src": "https://raw.githack.com/Laabati/Nyvya/main/icons/icon-192.png",
