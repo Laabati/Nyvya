@@ -5,7 +5,6 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nyvya IA Phone</title>
-
   <!-- icônes PWA -->
   <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png" />
@@ -15,28 +14,16 @@
   <h1>Bienvenue sur Nyvya IA Phone !</h1>
   <p>Service téléphonique IA – préparez-vous à l’étape suivante.</p>
 
-  <!-- Enregistrement du service worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker
-          .register('/service-worker.js')
-          .then(reg => console.log('SW enregistré :', reg))
-          .catch(err => console.error('Échec SW :', err));
-      });
-    }
-  </script>
-
   <!-- Bouton Appeler l’IA -->
   <button id="call-btn" style="font-size:1.2em; padding:0.5em 1em; margin-top:1em;">
     📞 Appeler l’IA
   </button>
 
-  <!-- Script ElevenLabs TTS - Voix Rachel (universelle) -->
+  <!-- Script ElevenLabs TTS Rachel -->
   <script>
     document.getElementById('call-btn').addEventListener('click', async () => {
-      const apiKey  = 'sk_69d58535c7bc57ee86845d2024ee094a208905e0b19e912f'; // Ta clé API (Full access)
-      const voiceId = '21m00Tcm4TlvDq8ikWAM'; // Rachel (fonctionne tout le temps)
+      const apiKey  = 'sk_69d58535c7bc57ee86845d2024ee094a208905e0b19e912f';
+      const voiceId = '21m00Tcm4TlvDq8ikWAM'; // Rachel (par défaut)
       const text    = 'Bienvenue chez Nyvya IA Phone, préparez-vous à l\'étape suivante.';
 
       try {
@@ -46,9 +33,13 @@
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'xi-api-key':    apiKey
+              'xi-api-key': apiKey
             },
-            body: JSON.stringify({ text: text })
+            body: JSON.stringify({
+              text: text,
+              model_id: 'eleven_multilingual_v2',
+              voice_settings: { stability: 0.5, similarity_boost: 0.5 }
+            })
           }
         );
         if (!res.ok) throw new Error('TTS error ' + res.status);
