@@ -25,11 +25,36 @@
 
   <div id="zone"></div>
 
-  <!-- À FINIR : Fonction Vocale ElevenLabs -->
-  <!-- À FINIR : Icône personnalisée -->
-  
+  <!-- AUDIO PLAYER POUR LA VOIX IA -->
+  <audio id="nyvya-audio"></audio>
+
   <script>
-    // Gestion des menus et affichage dynamique
+    // --- Synthèse vocale ElevenLabs ---
+    async function lireAvecTTS(text) {
+      const apiKey  = 'sk_69d58535c7bc57ee86845c9944c62443cbd792665d17c79ba491'; // Mets ta clé ici si tu changes
+      const voiceId = '21m00Tcm4TlvDq8ikWAM'; // Rachel
+      try {
+        const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'xi-api-key': apiKey
+          },
+          body: JSON.stringify({ text })
+        });
+        if (!res.ok) throw new Error('TTS error ' + res.status);
+        const blob = await res.blob();
+        const url = URL.createObjectURL(blob);
+        const audio = document.getElementById('nyvya-audio');
+        audio.src = url;
+        audio.play();
+      } catch (err) {
+        alert('Erreur TTS : ' + err.message);
+        console.error(err);
+      }
+    }
+
+    // --- Menus dynamiques ---
     function menu(type) {
       let html = "";
       if (type === "histoire") {
@@ -72,8 +97,17 @@
     function alerteHistoire(theme) {
       alert("Histoire de " + theme + " : (à venir)");
     }
+    // --- Nouvelle fonction pour les berceuses ---
     function alerteBerceuse(theme) {
-      alert("Berceuse : " + theme + " (à venir)");
+      if (theme === 'douce nuit') {
+        lireAvecTTS("Dors, dors, mon petit trésor, la lune veille sur toi. Ferme les yeux, tout doucement, je te chante une douce berceuse.");
+      } else if (theme === 'etoiles') {
+        lireAvecTTS("Ferme les yeux, mon enfant, les étoiles brillent rien que pour toi. Laisse-toi bercer tout doucement.");
+      } else if (theme === 'océan') {
+        lireAvecTTS("Écoute les vagues, mon bébé, qui bercent ton sommeil. La mer te protège jusqu’au matin.");
+      } else {
+        alert("Berceuse : " + theme + " (à venir)");
+      }
     }
   </script>
 </body>
