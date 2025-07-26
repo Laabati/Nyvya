@@ -6,21 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nyvya IA Phone</title>
 
-  <!-- Icônes pour écran d’accueil -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180.png" />
+  <!-- icônes PWA -->
   <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png" />
 </head>
 <body>
   <h1>Bienvenue sur Nyvya IA Phone !</h1>
-  <p>Service téléphonique IA – appuyez sur le bouton pour parler.</p>
+  <p>Service téléphonique IA – préparez-vous à l’étape suivante.</p>
 
-  <!-- Enregistrement du service-worker -->
+  <!-- Enregistrement du service worker -->
   <script>
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         navigator.serviceWorker
-          .register('service-worker.js')
+          .register('/service-worker.js')
           .then(reg => console.log('SW enregistré :', reg))
           .catch(err => console.error('Échec SW :', err));
       });
@@ -28,34 +27,45 @@
   </script>
 
   <!-- Bouton Appeler l’IA -->
-  <button id="call-btn"
-          style="font-size:1.2em; padding:0.5em 1em; margin-top:1em;">
+  <button id="call-btn" style="font-size:1.2em; padding:0.5em 1em;">
     📞 Appeler l’IA
   </button>
+
+  <!-- Script d’alerte basique -->
+  <script>
+    document.getElementById('call-btn')
+      .addEventListener('click', () => {
+        alert('Appel en cours…');
+      });
+  </script>
 
   <!-- Script ElevenLabs TTS -->
   <script>
     document.getElementById('call-btn').addEventListener('click', async () => {
-      const apiKey = 'VOTRE_ELEVENLABS_API_KEY';
-      const voiceId = 'VOTRE_VOICE_ID';
-      const text = 'Bienvenue chez Nyvya IA Phone, comment puis-je vous aider aujourd’hui ?';
+      // 1) Remplissez ces deux variables ci-dessous :
+      const apiKey  = 'VOTRE_VRAIE_ELEVENLABS_API_KEY';
+      const voiceId = 'VOTRE_VRAIE_VOICE_ID';
+
+      // 2) Le texte à faire dire :
+      const text = 'Bienvenue chez Nyvya IA Phone, préparez-vous à l\'étape suivante.';
+
       try {
         const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'xi-api-key': apiKey
+            'xi-api-key':    apiKey
           },
           body: JSON.stringify({ text })
         });
-        if (!res.ok) throw new Error('TTS error '+res.status);
-        const blob = await res.blob();
-        const url = URL.createObjectURL(blob);
+        if (!res.ok) throw new Error('TTS error ' + res.status);
+        const blob  = await res.blob();
+        const url   = URL.createObjectURL(blob);
         const audio = new Audio(url);
         await audio.play();
       } catch (err) {
+        alert('Erreur TTS : ' + err.message);
         console.error(err);
-        alert('Erreur de synthèse vocale : ' + err.message);
       }
     });
   </script>
