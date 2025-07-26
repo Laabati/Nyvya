@@ -42,19 +42,24 @@
   <!-- ElevenLabs TTS -->
   <script>
     document.getElementById('call-btn').addEventListener('click', async () => {
-      const apiKey  = 'ta_clé_secrète_à_longueur_exacte';
-const voiceId = 'ton_voice_id_exact';
-      const text    = 'Bienvenue chez Nyvya IA Phone, préparez-vous à l\'étape suivante.';
+      // → REMPLACEZ ces deux lignes par VOS clés exactes :
+      const apiKey  = 'VOTRE_ELEVENLABS_API_KEY_ICYCLÉ';
+      const voiceId = 'VOTRE_VOICE_ID_EXACT';
+
+      const text = 'Bienvenue chez Nyvya IA Phone, préparez-vous à l\'étape suivante.';
 
       try {
-        const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'xi-api-key':    apiKey
-          },
-          body: JSON.stringify({ text })
-        });
+        const res = await fetch(
+          `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'xi-api-key': apiKey
+            },
+            body: JSON.stringify({ text })
+          }
+        );
         if (!res.ok) throw new Error('TTS error ' + res.status);
         const blob  = await res.blob();
         const url   = URL.createObjectURL(blob);
