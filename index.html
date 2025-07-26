@@ -5,11 +5,11 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nyvya IA Phone</title>
+  <meta name="theme-color" content="#FFFFFF" />
 
   <!-- icônes PWA -->
   <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png" />
-  <meta name="theme-color" content="#FFFFFF" />
 </head>
 <body>
   <h1>Bienvenue sur Nyvya IA Phone !</h1>
@@ -32,14 +32,17 @@
     📞 Appeler l’IA
   </button>
 
-  <!-- Script ElevenLabs TTS -->
+  <!-- Script ElevenLabs TTS corrigé -->
   <script>
     document.getElementById('call-btn').addEventListener('click', async () => {
+      alert('Appel en cours…');
+
       // Ta clé API ElevenLabs (Full access Text-to-Speech)
       const apiKey  = 'sk_69d58535c7bc57ee86845d2024ee094a208905e0b19e912f';
-      // Voice ID de la voix choisie (ici la voix métisse que tu as récupérée)
+      // Voice ID de la voix choisie
       const voiceId = 'KmqhNPEmmOndTBOPk4mJ';
-      const text    = 'Bienvenue chez Nyvya IA Phone, préparez-vous à l\'étape suivante.';
+      // Texte à prononcer
+      const text    = "Bienvenue chez Nyvya IA Phone, préparez-vous à l'étape suivante.";
 
       try {
         const res = await fetch(
@@ -48,11 +51,15 @@
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'xi-api-key':    apiKey
+              'xi-api-key': apiKey
             },
-            body: JSON.stringify({ text })
+            body: JSON.stringify({
+              text: text,
+              model_id: "eleven_multilingual_v2"
+            })
           }
         );
+
         if (!res.ok) throw new Error('TTS error ' + res.status);
         const blob  = await res.blob();
         const url   = URL.createObjectURL(blob);
