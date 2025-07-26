@@ -27,11 +27,11 @@
   </script>
 
   <!-- Bouton Appeler l’IA -->
-  <button id="call-btn" style="font-size:1.2em; padding:0.5em 1em; margin-top:1em;">
+  <button id="call-btn" style="font-size:1.2em; padding:0.5em 1em;">
     📞 Appeler l’IA
   </button>
 
-  <!-- Script d’alerte basique -->
+  <!-- Alerte basique -->
   <script>
     document.getElementById('call-btn')
       .addEventListener('click', () => {
@@ -39,30 +39,25 @@
       });
   </script>
 
-  <!-- Script ElevenLabs TTS -->
+  <!-- ElevenLabs TTS -->
   <script>
     document.getElementById('call-btn').addEventListener('click', async () => {
-      // Remplace ces valeurs par tes vraies clés
       const apiKey  = 'VOTRE_VRAIE_ELEVENLABS_API_KEY';
       const voiceId = 'VOTRE_VRAIE_VOICE_ID';
-
-      const text = "Bienvenue chez Nyvya IA Phone, préparez-vous à l'étape suivante.";
+      const text    = 'Bienvenue chez Nyvya IA Phone, préparez-vous à l\'étape suivante.';
 
       try {
-        const res = await fetch(
-          `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'xi-api-key': apiKey
-            },
-            body: JSON.stringify({ text })
-          }
-        );
+        const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'xi-api-key':    apiKey
+          },
+          body: JSON.stringify({ text })
+        });
         if (!res.ok) throw new Error('TTS error ' + res.status);
-        const blob = await res.blob();
-        const url  = URL.createObjectURL(blob);
+        const blob  = await res.blob();
+        const url   = URL.createObjectURL(blob);
         const audio = new Audio(url);
         await audio.play();
       } catch (err) {
