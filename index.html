@@ -37,7 +37,7 @@
   <div id="zone"></div>
 
   <script>
-    // Fonction TTS universelle, 100 % gratuite, rien à payer
+    // Fonction TTS navigateur (gratuite)
     function parlerTexte(text, voiceName = "") {
       const synth = window.speechSynthesis;
       const utter = new SpeechSynthesisUtterance(text);
@@ -82,7 +82,7 @@
         html = "<p>Fonction à venir…</p>";
       }
       else if (type === "blague") {
-        html = "<button onclick=\"parlerTexte('Pourquoi les poissons détestent l ordinateur ? Parce qu ils ont peur des virus !')\">Raconte-moi une blague !</button><br><button onclick=\"menu('')\">⬅️ Retour</button>";
+        html = `<button onclick="parlerTexte('Pourquoi les poissons détestent l ordinateur ? Parce qu ils ont peur des virus !')">Raconte-moi une blague !</button><br><button onclick="menu('')">⬅️ Retour</button>`;
       }
       else {
         html = "";
