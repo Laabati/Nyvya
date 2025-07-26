@@ -2,11 +2,14 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
+  <!-- PWA manifest -->
   <link rel="manifest" href="/manifest.webmanifest" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <title>Nyvya IA Phone</title>
 
-  <!-- Icônes iOS / Android -->
+  <!-- Icônes iOS (Add to Home Screen) -->
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/icon-180.png" />
   <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png" />
 </head>
@@ -14,15 +17,16 @@
   <h1>Bienvenue sur Nyvya IA Phone !</h1>
   <p>Service téléphonique IA – préparez-vous à l’étape suivante.</p>
 
-  <!-- enregistrement du service worker PWA -->
+  <!-- Enregistrement du service worker -->
   <script>
-  if ('serviceWorker' in navigator) {
-    window.addEventListener('load', () => {
-      navigator.serviceWorker.register('/service-worker.js')
-        .then(reg => console.log('SW enregistré :', reg))
-        .catch(err => console.error('Échec enregistrement :', err));
-    });
-  }
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker
+          .register('/service-worker.js')
+          .then(reg => console.log('ServiceWorker enregistré :', reg))
+          .catch(err => console.error('Échec enregistrement :', err));
+      });
+    }
   </script>
 
   <!-- Bouton Appeler l’IA -->
@@ -30,20 +34,18 @@
     📞 Appeler l’IA
   </button>
 
-  <!-- alerte “Appel en cours…” -->
+  <!-- Alertes lors du clic -->
   <script>
-  document.getElementById('call-btn')
-    .addEventListener('click', () => {
-      alert('Appel en cours…');
-    });
+    document.getElementById('call-btn')
+      .addEventListener('click', () => {
+        alert('Appel en cours…');
+      });
   </script>
-
-  <!-- alerte “Pour l’instant je ne fais rien…” -->
   <script>
-  document.getElementById('call-btn')
-    .addEventListener('click', () => {
-      alert('Pour l\'instant je ne fais rien ; bientôt j’appellerai Twilio !');
-    });
+    document.getElementById('call-btn')
+      .addEventListener('click', () => {
+        alert('Pour l’instant je ne fais rien ; bientôt j’appellerai Twilio !');
+      });
   </script>
 </body>
 </html>
