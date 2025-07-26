@@ -1,24 +1,19 @@
 {
-  "name": "Nyvya IA Phone",
-  "short_name": "NyvyaIA",
-  "start_url": "/index.html?utm_source=homescreen",
+  "name": "Nyyva IA Phone",
+  "short_name": "NyyvaIA",
+  "start_url": "index.html?utm_source=homescreen",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#FFFFFF",
   "description": "Service téléphonique IA – préparez-vous à l’étape suivante.",
   "icons": [
     {
-      "src": "/icons/icon-180.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    },
-    {
-      "src": "/icons/icon-192.png",
+      "src": "icons/icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/icons/icon-512.png",
+      "src": "icons/icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
