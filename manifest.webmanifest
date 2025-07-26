@@ -1,7 +1,7 @@
 {
   "name": "Nyvya IA Phone",
   "short_name": "NyvyaIA",
-  "start_url": "/index.html?utm_source=homescreen",
+  "start_url": "/Nyvya/",
   "display": "standalone",
   "background_color": "#FFFFFF",
   "theme_color": "#FFFFFF",
