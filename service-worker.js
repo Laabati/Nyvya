@@ -1,5 +1,6 @@
-const CACHE_NAME    = 'nyvya-cache-v1';
-const OFFLINE_URL   = '/';
+const CACHE_NAME = 'nyvya-cache-v1';
+const OFFLINE_URL = '/';
+
 const PRECACHE_ASSETS = [
   OFFLINE_URL,
   '/manifest.webmanifest',
