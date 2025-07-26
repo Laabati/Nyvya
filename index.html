@@ -9,6 +9,7 @@
   <!-- icônes PWA -->
   <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png" />
+  <meta name="theme-color" content="#FFFFFF" />
 </head>
 <body>
   <h1>Bienvenue sur Nyvya IA Phone !</h1>
@@ -27,26 +28,18 @@
   </script>
 
   <!-- Bouton Appeler l’IA -->
-  <button id="call-btn" style="font-size:1.2em; padding:0.5em 1em;">
+  <button id="call-btn" style="font-size:1.2em; padding:0.5em 1em; margin-top:1em;">
     📞 Appeler l’IA
   </button>
 
-  <!-- Alerte basique -->
-  <script>
-    document.getElementById('call-btn')
-      .addEventListener('click', () => {
-        alert('Appel en cours…');
-      });
-  </script>
-
-  <!-- ElevenLabs TTS -->
+  <!-- Script ElevenLabs TTS -->
   <script>
     document.getElementById('call-btn').addEventListener('click', async () => {
-      // → REMPLACEZ ces deux lignes par VOS clés exactes :
-      const apiKey  = 'VOTRE_ELEVENLABS_API_KEY_ICYCLÉ';
-      const voiceId = 'VOTRE_VOICE_ID_EXACT';
-
-      const text = 'Bienvenue chez Nyvya IA Phone, préparez-vous à l\'étape suivante.';
+      // Ta clé API ElevenLabs (Full access Text-to-Speech)
+      const apiKey  = 'sk_69d58535c7bc57ee86845d2024ee094a208905e0b19e912f';
+      // Voice ID de la voix choisie (ici la voix métisse que tu as récupérée)
+      const voiceId = 'KmqhNPEmmOndTBOPk4mJ';
+      const text    = 'Bienvenue chez Nyvya IA Phone, préparez-vous à l\'étape suivante.';
 
       try {
         const res = await fetch(
@@ -55,7 +48,7 @@
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
-              'xi-api-key': apiKey
+              'xi-api-key':    apiKey
             },
             body: JSON.stringify({ text })
           }
