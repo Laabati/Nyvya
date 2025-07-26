@@ -1,12 +1,12 @@
-const CACHE_NAME = 'nyvya-cache-v1';
+const CACHE_NAME = 'nyyva-cache-v1';
 const OFFLINE_URL = '/';
 
 const PRECACHE_ASSETS = [
   OFFLINE_URL,
-  '/manifest.webmanifest',
-  '/index.html',
-  '/icons/icon-192.png',
-  '/icons/icon-512.png'
+  'manifest.webmanifest',
+  'index.html',
+  'icons/icon-192.png',
+  'icons/icon-512.png'
 ];
 
 self.addEventListener('install', event => {
@@ -19,12 +19,13 @@ self.addEventListener('install', event => {
 self.addEventListener('fetch', event => {
   event.respondWith(
     caches.match(event.request).then(cached => {
-      return cached || fetch(event.request).then(response => {
-        return caches.open(CACHE_NAME).then(cache => {
-          cache.put(event.request, response.clone());
-          return response;
+      return cached || fetch(event.request)
+        .then(response => {
+          return caches.open(CACHE_NAME).then(cache => {
+            cache.put(event.request, response.clone());
+            return response;
+          });
         });
-      });
     })
   );
 });
