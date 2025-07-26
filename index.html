@@ -5,53 +5,76 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nyvya IA Phone</title>
-  <!-- icônes PWA -->
+  <!-- Icônes PWA -->
   <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png" />
   <meta name="theme-color" content="#FFFFFF" />
 </head>
 <body>
-  <h1>Bienvenue sur Nyvya IA Phone !</h1>
-  <p>Service téléphonique IA – préparez-vous à l’étape suivante.</p>
+  <h1>Bienvenue sur Nyvya IA Phone !</h1>
+  <p>Choisis ce que tu veux faire 👇</p>
 
-  <!-- Bouton Appeler l’IA -->
-  <button id="call-btn" style="font-size:1.2em; padding:0.5em 1em; margin-top:1em;">
-    📞 Appeler l’IA
-  </button>
+  <!-- MENU PRINCIPAL -->
+  <button onclick="menu('histoire')">📖 Écouter une histoire</button><br><br>
+  <button onclick="menu('berceuse')">🎶 Écouter une berceuse</button><br><br>
+  <button onclick="menu('traduction')">🌍 Traduction instantanée</button><br><br>
+  <button onclick="menu('actu')">📰 Actualité du jour</button><br><br>
+  <button onclick="menu('jeu')">🧩 Devinette / Jeu IA</button><br><br>
+  <button onclick="menu('blague')">😂 Blague du jour</button><br><br>
+  <button onclick="menu('autre')">✨ Autre (à venir)</button><br><br>
 
-  <!-- Script ElevenLabs TTS Rachel -->
+  <div id="zone"></div>
+
+  <!-- À FINIR : Fonction Vocale ElevenLabs -->
+  <!-- À FINIR : Icône personnalisée -->
+  
   <script>
-    document.getElementById('call-btn').addEventListener('click', async () => {
-      const apiKey  = 'sk_69d58535c7bc57ee86845d2024ee094a208905e0b19e912f';
-      const voiceId = '21m00Tcm4TlvDq8ikWAM'; // Rachel (par défaut)
-      const text    = 'Bienvenue chez Nyvya IA Phone, préparez-vous à l\'étape suivante.';
-
-      try {
-        const res = await fetch(
-          `https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`,
-          {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-              'xi-api-key': apiKey
-            },
-            body: JSON.stringify({
-              text: text,
-              model_id: 'eleven_multilingual_v2',
-              voice_settings: { stability: 0.5, similarity_boost: 0.5 }
-            })
-          }
-        );
-        if (!res.ok) throw new Error('TTS error ' + res.status);
-        const blob  = await res.blob();
-        const url   = URL.createObjectURL(blob);
-        const audio = new Audio(url);
-        await audio.play();
-      } catch (err) {
-        alert('Erreur TTS : ' + err.message);
-        console.error(err);
+    // Gestion des menus et affichage dynamique
+    function menu(type) {
+      let html = "";
+      if (type === "histoire") {
+        html = `
+          <h2>Choisis un thème d'histoire</h2>
+          <button onclick="alerteHistoire('pirates')">🏴‍☠️ Pirates</button>
+          <button onclick="alerteHistoire('princesse')">👸 Princesse</button>
+          <button onclick="alerteHistoire('espace')">🚀 Espace</button>
+          <button onclick="alerteHistoire('animaux')">🐻 Animaux</button>
+          <button onclick="menu('')">⬅️ Retour</button>
+        `;
       }
-    });
+      else if (type === "berceuse") {
+        html = `
+          <h2>Choisis une berceuse</h2>
+          <button onclick="alerteBerceuse('douce nuit')">🌙 Douce nuit</button>
+          <button onclick="alerteBerceuse('etoiles')">⭐ Berceuse des étoiles</button>
+          <button onclick="alerteBerceuse('océan')">🌊 Rêve d’océan</button>
+          <button onclick="menu('')">⬅️ Retour</button>
+        `;
+      }
+      else if (type === "traduction") {
+        html = "<p>Fonction à venir…</p>";
+      }
+      else if (type === "actu") {
+        html = "<p>Fonction à venir…</p>";
+      }
+      else if (type === "jeu") {
+        html = "<p>Fonction à venir…</p>";
+      }
+      else if (type === "blague") {
+        html = "<p>Fonction à venir…</p>";
+      }
+      else {
+        html = "";
+      }
+      document.getElementById('zone').innerHTML = html;
+    }
+
+    function alerteHistoire(theme) {
+      alert("Histoire de " + theme + " : (à venir)");
+    }
+    function alerteBerceuse(theme) {
+      alert("Berceuse : " + theme + " (à venir)");
+    }
   </script>
 </body>
 </html>
