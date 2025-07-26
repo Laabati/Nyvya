@@ -5,6 +5,8 @@
   <link rel="manifest" href="/manifest.webmanifest" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nyvya IA Phone</title>
+
+  <!-- icônes PWA -->
   <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png" />
   <meta name="theme-color" content="#FFFFFF" />
@@ -30,14 +32,12 @@
     📞 Appeler l’IA
   </button>
 
-  <!-- ElevenLabs TTS -->
+  <!-- Script ElevenLabs TTS corrigé (2024) -->
   <script>
     document.getElementById('call-btn').addEventListener('click', async () => {
-      // Ta clé API ElevenLabs (full-access Text-to-Speech)
       const apiKey  = 'sk_69d58535c7bc57ee86845d2024ee094a208905e0b19e912f';
-      // Nouveau Voice ID fourni
       const voiceId = '6vTyAgAT8PncODBcLjRf';
-      // Le texte à prononcer
+      const modelId = 'eleven_multilingual_v2'; // la plupart des voix standard
       const text    = 'Bienvenue chez Nyvya IA Phone, préparez-vous à l\'étape suivante.';
 
       try {
@@ -49,7 +49,15 @@
               'Content-Type': 'application/json',
               'xi-api-key':    apiKey
             },
-            body: JSON.stringify({ text })
+            body: JSON.stringify({
+              text: text,
+              model_id: modelId,
+              language_code: "fr",
+              voice_settings: {
+                stability: 0.5,
+                similarity_boost: 0.5
+              }
+            })
           }
         );
         if (!res.ok) throw new Error('TTS error ' + res.status);
