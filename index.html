@@ -32,12 +32,11 @@
     📞 Appeler l’IA
   </button>
 
-  <!-- Script ElevenLabs TTS corrigé (2024) -->
+  <!-- Script ElevenLabs TTS - Voix Rachel (universelle) -->
   <script>
     document.getElementById('call-btn').addEventListener('click', async () => {
-      const apiKey  = 'sk_69d58535c7bc57ee86845d2024ee094a208905e0b19e912f';
-      const voiceId = '6vTyAgAT8PncODBcLjRf';
-      const modelId = 'eleven_multilingual_v2'; // la plupart des voix standard
+      const apiKey  = 'sk_69d58535c7bc57ee86845d2024ee094a208905e0b19e912f'; // Ta clé API (Full access)
+      const voiceId = '21m00Tcm4TlvDq8ikWAM'; // Rachel (fonctionne tout le temps)
       const text    = 'Bienvenue chez Nyvya IA Phone, préparez-vous à l\'étape suivante.';
 
       try {
@@ -49,15 +48,7 @@
               'Content-Type': 'application/json',
               'xi-api-key':    apiKey
             },
-            body: JSON.stringify({
-              text: text,
-              model_id: modelId,
-              language_code: "fr",
-              voice_settings: {
-                stability: 0.5,
-                similarity_boost: 0.5
-              }
-            })
+            body: JSON.stringify({ text: text })
           }
         );
         if (!res.ok) throw new Error('TTS error ' + res.status);
