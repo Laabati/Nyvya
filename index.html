@@ -9,70 +9,66 @@
   <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png" />
   <meta name="theme-color" content="#FFFFFF" />
+  <style>
+    body { font-family: system-ui,sans-serif; padding: 1em; }
+    button { 
+      margin: 5px 0; padding: 0.4em 1em; font-size: 1.1em; 
+      border-radius: 20px; border: none; background: #edf0fa; color: #114;
+      cursor: pointer; transition: 0.1s; box-shadow: 1px 1px 4px #0001;
+      display: inline-block;
+    }
+    button:hover { background: #d5e6fa; }
+    #zone { margin-top: 1.6em; }
+  </style>
 </head>
 <body>
   <h1>Bienvenue sur Nyvya IA Phone !</h1>
   <p>Choisis ce que tu veux faire 👇</p>
 
   <!-- MENU PRINCIPAL -->
-  <button onclick="menu('histoire')">📖 Écouter une histoire</button><br><br>
-  <button onclick="menu('berceuse')">🎶 Écouter une berceuse</button><br><br>
-  <button onclick="menu('traduction')">🌍 Traduction instantanée</button><br><br>
-  <button onclick="menu('actu')">📰 Actualité du jour</button><br><br>
-  <button onclick="menu('jeu')">🧩 Devinette / Jeu IA</button><br><br>
-  <button onclick="menu('blague')">😂 Blague du jour</button><br><br>
-  <button onclick="menu('autre')">✨ Autre (à venir)</button><br><br>
+  <button onclick="menu('histoire')">📖 Écouter une histoire</button><br>
+  <button onclick="menu('berceuse')">🎶 Écouter une berceuse</button><br>
+  <button onclick="menu('traduction')">🌍 Traduction instantanée</button><br>
+  <button onclick="menu('actu')">📰 Actualité du jour</button><br>
+  <button onclick="menu('jeu')">🧩 Devinette / Jeu IA</button><br>
+  <button onclick="menu('blague')">😂 Blague du jour</button><br>
+  <button onclick="menu('autre')">✨ Autre (à venir)</button><br>
 
   <div id="zone"></div>
 
-  <!-- AUDIO PLAYER POUR LA VOIX IA -->
-  <audio id="nyvya-audio"></audio>
-
   <script>
-    // --- Synthèse vocale ElevenLabs ---
-    async function lireAvecTTS(text) {
-      const apiKey  = 'sk_69d58535c7bc57ee86845c9944c62443cbd792665d17c79ba491'; // Mets ta clé ici si tu changes
-      const voiceId = '21m00Tcm4TlvDq8ikWAM'; // Rachel
-      try {
-        const res = await fetch(`https://api.elevenlabs.io/v1/text-to-speech/${voiceId}`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'xi-api-key': apiKey
-          },
-          body: JSON.stringify({ text })
-        });
-        if (!res.ok) throw new Error('TTS error ' + res.status);
-        const blob = await res.blob();
-        const url = URL.createObjectURL(blob);
-        const audio = document.getElementById('nyvya-audio');
-        audio.src = url;
-        audio.play();
-      } catch (err) {
-        alert('Erreur TTS : ' + err.message);
-        console.error(err);
+    // Fonction TTS universelle, 100 % gratuite, rien à payer
+    function parlerTexte(text, voiceName = "") {
+      const synth = window.speechSynthesis;
+      const utter = new SpeechSynthesisUtterance(text);
+      if (voiceName) {
+        const voices = synth.getVoices();
+        const found = voices.find(v => v.name === voiceName);
+        if (found) utter.voice = found;
       }
+      utter.lang = "fr-FR";
+      synth.speak(utter);
     }
 
-    // --- Menus dynamiques ---
+    // Gestion des menus et affichage dynamique
     function menu(type) {
       let html = "";
       if (type === "histoire") {
         html = `
           <h2>Choisis un thème d'histoire</h2>
-          <button onclick="alerteHistoire('pirates')">🏴‍☠️ Pirates</button>
-          <button onclick="alerteHistoire('princesse')">👸 Princesse</button>
-          <button onclick="alerteHistoire('espace')">🚀 Espace</button>
-          <button onclick="alerteHistoire('animaux')">🐻 Animaux</button>
+          <button onclick="parlerTexte('Il était une fois un pirate courageux sur les mers lointaines.');">🏴‍☠️ Pirates</button>
+          <button onclick="parlerTexte('La princesse Rose s endormit dans son château enchanté.');">👸 Princesse</button>
+          <button onclick="parlerTexte('Un astronaute explore les planètes inconnues de la galaxie.');">🚀 Espace</button>
+          <button onclick="parlerTexte('Un petit ourson découvre la forêt magique avec ses amis.');">🐻 Animaux</button>
           <button onclick="menu('')">⬅️ Retour</button>
         `;
       }
       else if (type === "berceuse") {
         html = `
           <h2>Choisis une berceuse</h2>
-          <button onclick="alerteBerceuse('douce nuit')">🌙 Douce nuit</button>
-          <button onclick="alerteBerceuse('etoiles')">⭐ Berceuse des étoiles</button>
-          <button onclick="alerteBerceuse('océan')">🌊 Rêve d’océan</button>
+          <button onclick="parlerTexte('Douce nuit, belle nuit, tout s endort sous la lune.');">🌙 Douce nuit</button>
+          <button onclick="parlerTexte('Ferme les yeux, les étoiles veillent sur toi.');">⭐ Berceuse des étoiles</button>
+          <button onclick="parlerTexte('Ecoute le doux murmure de l océan pour t endormir.');">🌊 Rêve d’océan</button>
           <button onclick="menu('')">⬅️ Retour</button>
         `;
       }
@@ -86,28 +82,12 @@
         html = "<p>Fonction à venir…</p>";
       }
       else if (type === "blague") {
-        html = "<p>Fonction à venir…</p>";
+        html = "<button onclick=\"parlerTexte('Pourquoi les poissons détestent l ordinateur ? Parce qu ils ont peur des virus !')\">Raconte-moi une blague !</button><br><button onclick=\"menu('')\">⬅️ Retour</button>";
       }
       else {
         html = "";
       }
       document.getElementById('zone').innerHTML = html;
-    }
-
-    function alerteHistoire(theme) {
-      alert("Histoire de " + theme + " : (à venir)");
-    }
-    // --- Nouvelle fonction pour les berceuses ---
-    function alerteBerceuse(theme) {
-      if (theme === 'douce nuit') {
-        lireAvecTTS("Dors, dors, mon petit trésor, la lune veille sur toi. Ferme les yeux, tout doucement, je te chante une douce berceuse.");
-      } else if (theme === 'etoiles') {
-        lireAvecTTS("Ferme les yeux, mon enfant, les étoiles brillent rien que pour toi. Laisse-toi bercer tout doucement.");
-      } else if (theme === 'océan') {
-        lireAvecTTS("Écoute les vagues, mon bébé, qui bercent ton sommeil. La mer te protège jusqu’au matin.");
-      } else {
-        alert("Berceuse : " + theme + " (à venir)");
-      }
     }
   </script>
 </body>
