@@ -3,43 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>Nyvya IA Phone</title>
 
-  <!-- Manifest PWA -->
-  <link rel="manifest" href="https://raw.githack.com/Laabati/Nyvya/main/manifest.webmanifest" />
+  <!-- PWA manifest -->
+  <link rel="manifest" href="manifest.webmanifest">
 
-  <!-- Icônes pour iOS (écran d’accueil) -->
-  <link rel="apple-touch-icon" sizes="192x192"
-        href="https://raw.githack.com/Laabati/Nyvya/main/icons/icon-192.png" />
-  <link rel="apple-touch-icon" sizes="512x512"
-        href="https://raw.githack.com/Laabati/Nyvya/main/icons/icon-512.png" />
+  <!-- icônes pour iOS et Android -->
+  <link rel="apple-touch-icon" sizes="192x192" href="icons/icon-192.png" />
+  <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png" />
+
+  <!-- tu peux ajouter ici ton CSS si besoin -->
 </head>
 <body>
   <h1>Bienvenue sur Nyvya IA Phone !</h1>
   <p>Service téléphonique IA – préparez-vous à l’étape suivante.</p>
 
-  <!-- enregistrement du service worker -->
-  <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('https://raw.githack.com/Laabati/Nyvya/main/service-worker.js')
-          .then(reg => console.log('ServiceWorker enregistré :', reg))
-          .catch(err => console.error('Échec enregistrement :', err));
-      });
-    }
-  </script>
-
   <!-- Bouton Appeler l’IA -->
-  <button id="call-btn"
-          style="font-size:1.2em; padding:0.5em 1em; margin-top:1em;">
+  <button id="call-btn" style="font-size:1.2em; padding:0.5em 1em; margin-top:1em;">
     📞 Appeler l’IA
   </button>
 
-  <!-- Script pour l’alerte au clic -->
+  <!-- Script pour l’alerte “Appel en cours…” -->
   <script>
-    document.getElementById('call-btn').addEventListener('click', () => {
-      alert('Appel en cours…');
-    });
+    document.getElementById('call-btn')
+      .addEventListener('click', () => {
+        alert('Appel en cours…');
+      });
+  </script>
+
+  <!-- Script temporaire pour indiquer que Twilio arrive bientôt -->
+  <script>
+    document.getElementById('call-btn')
+      .addEventListener('click', () => {
+        alert('Pour l’instant je ne fais rien ; bientôt j’appellerai Twilio !');
+      });
   </script>
 </body>
 </html>
