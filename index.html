@@ -2,187 +2,234 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <link rel="manifest" href="/manifest.webmanifest" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nyvya IA Phone</title>
+  <title>Nyvya IA – L’assistant universel</title>
+  <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png" />
   <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png" />
-  <meta name="theme-color" content="#FFFFFF" />
+  <meta name="theme-color" content="#5b9fff" />
   <style>
-    body { font-family: system-ui,sans-serif; padding: 1em; background: #f7faff;}
-    h1 { color:#3246a8; font-size: 2.1em;}
-    .intro { background:#e7edfa; padding:1em 1.2em; border-radius:14px; margin-bottom:1.2em;}
-    button { 
-      margin: 6px 0; padding: 0.46em 1.1em; font-size: 1.09em; 
-      border-radius: 20px; border: none; background: #e6eefd; color: #213;
-      cursor: pointer; transition: 0.1s; box-shadow: 1px 1px 4px #0001;
-      display: inline-block;
+    body { font-family: system-ui, sans-serif; background: linear-gradient(140deg,#f6fbff 0%, #e5f0ff 100%); color: #122; padding: 1em; margin: 0;}
+    .wrap { max-width: 460px; margin: 0 auto; background: #fff9; border-radius: 20px; box-shadow: 0 4px 24px #0065f833; padding: 2em 1em; }
+    h1 { text-align: center; font-size: 2.1em; margin-bottom: .5em;}
+    .slogan { color:#2787ee; text-align:center; font-size:1.05em; margin-bottom:1.5em;}
+    .menu-btn { 
+      width: 100%; margin: 0.3em 0; padding: 1em; font-size: 1.15em; 
+      border-radius: 15px; border: none; background: #e7f0fa; color: #146; 
+      cursor: pointer; font-weight: 600; transition: 0.12s; box-shadow: 1px 1px 8px #0001;
+      letter-spacing:.01em;
     }
-    button:hover { background: #cddcf7; }
-    #zone { margin-top: 1.4em; }
-    input, textarea { font-size: 1em; padding: 5px 10px; border-radius: 8px; border: 1px solid #bbb; }
-    label { font-weight: bold; }
-    textarea { width: 95%; min-height: 44px; margin-bottom: 10px; }
-    .formzone { background: #f4f6ff; padding: 1em; border-radius: 15px; margin-bottom: 15px;}
-    .section {margin-bottom: 1.5em;}
-    .titre-section {font-weight:bold;font-size:1.12em;margin-bottom:8px;color:#183687;}
-    .footer {margin-top:40px;color:#9ca;}
+    .menu-btn:hover { background: #d2e4ff; color:#0b3179;}
+    .zone { margin-top: 1.8em; min-height: 130px;}
+    .img-demo { max-width:100%; border-radius:10px; margin: 0.7em 0; box-shadow:0 1px 10px #0002;}
+    .formblock { background: #f7faff; padding: 1em; border-radius: 15px; margin-bottom: 1.1em;}
+    label { font-weight: 600; margin-bottom: .2em; display: block;}
+    input, textarea, select { font-size: 1.05em; padding: 8px 10px; border-radius: 8px; border: 1px solid #b1d3fb; width: 97%; margin-bottom: 10px;}
+    textarea { min-height: 44px; }
+    .mini {font-size:.92em;color:#666;}
   </style>
 </head>
 <body>
-  <div class="intro">
-    <h1>Bienvenue sur Nyvya IA Phone !</h1>
-    <p>
-      Teste le futur du téléphone intelligent : <b>histoires, berceuses, blagues, devinettes, actus</b> et plus !<br>
-      Toutes les fonctions sont <b>100% gratuites, vocales, sans inscription</b>.<br>
-      <i>Tu peux personnaliser chaque contenu, et tout s’adapte à la personne et à la demande.</i>
-    </p>
-  </div>
-
-  <!-- MENU PRINCIPAL -->
-  <div class="section">
-    <div class="titre-section">Que veux-tu faire aujourd’hui ? 👇</div>
-    <button onclick="menu('histoire')">📖 Écouter une histoire IA</button>
-    <button onclick="menu('berceuse')">🎶 Écouter une berceuse IA</button>
-    <button onclick="menu('blague')">😂 Blague IA personnalisée</button>
-    <button onclick="menu('jeu')">🧩 Devinette / Jeu IA</button>
-    <button onclick="menu('traduction')">🌍 Traduction instantanée</button>
-    <button onclick="menu('actu')">📰 Actualité du jour</button>
-    <button onclick="menu('autre')">✨ Autre (à venir)</button>
-  </div>
-
-  <div id="zone"></div>
-
-  <div class="footer">
-    <b>Nyvya IA Phone</b> – Projet démo sans clé IA. Tout peut évoluer !  
+  <div class="wrap">
+    <h1>🌟 Nyvya IA</h1>
+    <div class="slogan">L’assistant universel – Unique. Personnalisé. Infini.<br>“Le futur, c’est maintenant.”</div>
+    
+    <!-- Menu Principal -->
+    <button class="menu-btn" onclick="menu('waouh')">✨ Pack WAOUH / Assistant universel</button>
+    <button class="menu-btn" onclick="menu('histoire')">📖 Histoire IA enfant/adulte</button>
+    <button class="menu-btn" onclick="menu('berceuse')">🎶 Berceuse personnalisée</button>
+    <button class="menu-btn" onclick="menu('actu')">📰 Actus en résumé</button>
+    <button class="menu-btn" onclick="menu('traduction')">🌍 Traduction vocale instantanée</button>
+    <button class="menu-btn" onclick="menu('blague')">😂 Blague sur-mesure</button>
+    <button class="menu-btn" onclick="menu('jeu')">🧩 Jeu / Devinette IA</button>
+    <button class="menu-btn" onclick="menu('autre')">🪄 Autres outils / À venir</button>
+    <div class="zone" id="zone"></div>
+    <div style="margin-top:2em; text-align:center" class="mini">
+      <b>Nyvya™ – version IA 2025.<br>Le site évolue sans limite, sans inscription obligatoire.</b>
+    </div>
   </div>
 
   <script>
+    // Fonction de vocalisation navigateur (100% gratuit pour démo, ElevenLabs plus tard)
+    function parlerTexte(text) {
+      if (!text) return;
+      try {
+        const synth = window.speechSynthesis;
+        const utter = new SpeechSynthesisUtterance(text);
+        utter.lang = "fr-FR";
+        synth.speak(utter);
+      } catch (e) { /* rien */ }
+    }
+
     function menu(type) {
       let html = "";
-      if (type === "histoire") {
+      if (type === "waouh") {
         html = `
-        <div class="formzone">
-          <h2>Histoire IA personnalisée</h2>
-          <label>Prénom, âge, envies, thème ou détails particuliers :</label><br>
-          <input id="cibleHistoire" style="width:85%;margin:10px 0" placeholder="ex: Wharys, 7 ans, adore les dragons, histoire drôle" /><br>
-          <button onclick="genererTexteDemo('histoire')">Générer l’histoire IA</button>
+        <div class="formblock">
+          <h2>✨ Pack WAOUH – Assistant Universel</h2>
+          <label>Décris ton besoin, ton projet, ton problème, ta demande (ex : “acheter voiture Clio 2021”, “préparer voyage Bali”, “trouver stage”, “résumé actu foot”, “aider mon enfant à dormir”, “rédiger lettre pro”, “conseil amour”, etc) :</label>
+          <textarea id="waouh_demande" placeholder="Ta demande, tes infos, tes envies…"></textarea>
+          <label for="langue">Langue souhaitée :</label>
+          <select id="waouh_langue">
+            <option value="fr-FR">Français</option>
+            <option value="en-US">Anglais</option>
+            <option value="ar">Arabe</option>
+            <option value="es">Espagnol</option>
+            <option value="de">Allemand</option>
+            <option value="zh">Chinois</option>
+          </select>
+          <label for="humeur">Humeur (optionnel) :</label>
+          <select id="waouh_humeur">
+            <option value="">Classique</option>
+            <option>Drôle</option>
+            <option>Super motivant</option>
+            <option>Rassurant</option>
+            <option>Ultra pro</option>
+            <option>Inédit / Effet surprise</option>
+          </select>
+          <button onclick="genererWaouh()">Générer la réponse IA</button>
         </div>
-        <div id="resultHistoire" style="margin-top:1.2em"></div>
-        <button onclick="menu('')">⬅️ Retour</button>
+        <div id="waouhResult"></div>
+        <button class="menu-btn" style="margin-top:1em" onclick="menu('')">⬅️ Retour</button>
+        `;
+      }
+      else if (type === "histoire") {
+        html = `
+        <div class="formblock">
+          <h2>📖 Histoire personnalisée</h2>
+          <label>Prénom, âge, envies, contexte, thème, bruitages (optionnel) :</label>
+          <input id="cibleHistoire" placeholder="ex: Wharys, 7 ans, adore les dinosaures, bruit de forêt" />
+          <label for="langueHistoire">Langue :</label>
+          <select id="langueHistoire">
+            <option value="fr-FR">Français</option>
+            <option value="en-US">Anglais</option>
+          </select>
+          <button onclick="genererHistoire()">Générer l’histoire IA</button>
+        </div>
+        <div id="resultHistoire"></div>
+        <button class="menu-btn" onclick="menu('')">⬅️ Retour</button>
         `;
       }
       else if (type === "berceuse") {
         html = `
-        <div class="formzone">
-          <h2>Berceuse IA personnalisée</h2>
-          <label>Pour qui ? (prénom, âge, humeur, bruit de fond, style…)</label><br>
-          <input id="cibleBerceuse" style="width:85%;margin:10px 0" placeholder="ex: Wharys, 7 ans, ambiance océan, voix douce" /><br>
-          <button onclick="genererTexteDemo('berceuse')">Générer la berceuse IA</button>
+        <div class="formblock">
+          <h2>🎶 Berceuse personnalisée</h2>
+          <label>Prénom, âge, humeur, bruit de fond, style, détails… :</label>
+          <input id="cibleBerceuse" placeholder="ex: Sara, 11 mois, ambiance mer, douce, voix féminine" />
+          <button onclick="genererBerceuse()">Générer la berceuse IA</button>
         </div>
-        <div id="resultBerceuse" style="margin-top:1.2em"></div>
-        <button onclick="menu('')">⬅️ Retour</button>
-        `;
-      }
-      else if (type === "blague") {
-        html = `
-        <div class="formzone">
-          <h2>Blague personnalisée IA</h2>
-          <label>Quel type de blague ? (public, sujet, style, prénom…)</label><br>
-          <input id="cibleBlague" style="width:85%;margin:10px 0" placeholder="ex: Blague courte pour un enfant de 7 ans sur les animaux" /><br>
-          <button onclick="genererTexteDemo('blague')">Générer la blague IA</button>
-        </div>
-        <div id="resultBlague" style="margin-top:1.2em"></div>
-        <button onclick="menu('')">⬅️ Retour</button>
-        `;
-      }
-      else if (type === "jeu") {
-        html = `
-        <div class="formzone">
-          <h2>Devinette / Jeu IA</h2>
-          <label>Pour qui ? (prénom, âge ou détail)</label><br>
-          <input id="cibleJeu" style="width:85%;margin:10px 0" placeholder="ex: Wharys, 7 ans" /><br>
-          <button onclick="genererTexteDemo('jeu')">Lancer une devinette IA</button>
-        </div>
-        <div id="resultJeu" style="margin-top:1.2em"></div>
-        <button onclick="menu('')">⬅️ Retour</button>
-        `;
-      }
-      else if (type === "traduction") {
-        html = `
-        <div class="formzone">
-          <h2>Traduction démo</h2>
-          <label>Mot ou phrase à traduire en anglais :</label><br>
-          <input id="cibleTraduction" style="width:85%;margin:10px 0" placeholder="ex: Bonjour comment tu vas ?" /><br>
-          <button onclick="genererTexteDemo('traduction')">Traduire</button>
-        </div>
-        <div id="resultTraduction" style="margin-top:1.2em"></div>
-        <button onclick="menu('')">⬅️ Retour</button>
+        <div id="resultBerceuse"></div>
+        <button class="menu-btn" onclick="menu('')">⬅️ Retour</button>
         `;
       }
       else if (type === "actu") {
         html = `
-        <div class="formzone">
-          <h2>Actualité du jour (démo)</h2>
-          <label>Exemple : football, musique, météo, France, monde…</label><br>
-          <input id="cibleActu" style="width:85%;margin:10px 0" placeholder="ex: Coupe du Monde, Paris, météo" /><br>
-          <button onclick="genererTexteDemo('actu')">Obtenir l’actualité</button>
+        <div class="formblock">
+          <h2>📰 Actus résumées à la demande</h2>
+          <label>Sujet, domaine, ville/pays, style (5min, actu foot, actu guerre, actu people, tout ce que tu veux) :</label>
+          <input id="cibleActu" placeholder="ex: Résumé actu rap français / actu Nancy aujourd’hui / actu foot PSG, etc." />
+          <button onclick="genererActu()">Résumé de l’actu IA</button>
         </div>
-        <div id="resultActu" style="margin-top:1.2em"></div>
-        <button onclick="menu('')">⬅️ Retour</button>
+        <div id="resultActu"></div>
+        <button class="menu-btn" onclick="menu('')">⬅️ Retour</button>
+        `;
+      }
+      else if (type === "traduction") {
+        html = `
+        <div class="formblock">
+          <h2>🌍 Traduction vocale instantanée</h2>
+          <label>Langue source :</label>
+          <select id="langSrc"><option value="fr">Français</option><option value="en">Anglais</option><option value="ar">Arabe</option></select>
+          <label>Langue cible :</label>
+          <select id="langDest"><option value="en">Anglais</option><option value="fr">Français</option><option value="ar">Arabe</option></select>
+          <textarea id="texteTraduire" placeholder="Dis ou écris ici à traduire…"></textarea>
+          <button onclick="genererTraduction()">Traduire & vocaliser</button>
+        </div>
+        <div id="resultTraduction"></div>
+        <button class="menu-btn" onclick="menu('')">⬅️ Retour</button>
+        `;
+      }
+      else if (type === "blague") {
+        html = `
+        <div class="formblock">
+          <h2>😂 Blague personnalisée IA</h2>
+          <label>Précise l’âge, le style, le prénom, le contexte, tout ce que tu veux (optionnel) :</label>
+          <input id="cibleBlague" placeholder="ex: Blague pour enfant sur les super-héros" />
+          <button onclick="genererBlague()">Générer la blague IA</button>
+        </div>
+        <div id="resultBlague"></div>
+        <button class="menu-btn" onclick="menu('')">⬅️ Retour</button>
+        `;
+      }
+      else if (type === "jeu") {
+        html = `
+        <div class="formblock">
+          <h2>🧩 Devinette / Jeu IA</h2>
+          <label>Précise le type de jeu ou de devinette (ex: 7 différences, charade, devinette facile, etc) :</label>
+          <input id="cibleJeu" placeholder="ex: Devinette pour 10 ans, facile, animaux" />
+          <button onclick="genererJeu()">Générer jeu / devinette IA</button>
+        </div>
+        <div id="resultJeu"></div>
+        <button class="menu-btn" onclick="menu('')">⬅️ Retour</button>
         `;
       }
       else {
-        html = "";
+        html = `<div class="formblock"><b>Bientôt : nouvelles fonctions inédites (images, vidéos, conseils pro, surprises…)</b></div>`;
       }
       document.getElementById('zone').innerHTML = html;
     }
 
-    // Démo de génération "IA" pour toutes les fonctions (aucune clé)
-    function genererTexteDemo(type) {
-      let cible = "";
-      let texte = "";
-      let idResult = "";
-      if (type === "histoire") {
-        cible = document.getElementById("cibleHistoire").value;
-        idResult = "resultHistoire";
-        texte = `Il était une fois ${cible || "un enfant merveilleux"}, qui partit explorer un monde fantastique peuplé de dragons rigolos et de fées farceuses. Son aventure changea sa vie pour toujours.`;
-      }
-      else if (type === "berceuse") {
-        cible = document.getElementById("cibleBerceuse").value;
-        idResult = "resultBerceuse";
-        texte = `Dors, ${cible || "mon petit trésor"}, la mer chante pour toi et la lune veille sur tes rêves doux. Repose-toi, tout va bien.`;
-      }
-      else if (type === "blague") {
-        cible = document.getElementById("cibleBlague").value;
-        idResult = "resultBlague";
-        texte = `Pourquoi ${cible || "le dauphin"} ne va jamais à l'école ? Parce qu'il préfère surfer sur Internet !`;
-      }
-      else if (type === "jeu") {
-        cible = document.getElementById("cibleJeu").value;
-        idResult = "resultJeu";
-        texte = `Devinette IA : Qu'est-ce qui est jaune et qui attend ? Jonathan !`;
-      }
-      else if (type === "traduction") {
-        cible = document.getElementById("cibleTraduction").value;
-        idResult = "resultTraduction";
-        texte = `${cible || "Bonjour"} → Hello (démo - vrai traducteur à venir)`;
-      }
-      else if (type === "actu") {
-        cible = document.getElementById("cibleActu").value;
-        idResult = "resultActu";
-        texte = `Actu : Aujourd'hui, ${cible || "il fait beau partout en France"}, les enfants rient et l’IA invente la bonne humeur ! (Exemple démo)`;
-      }
-      document.getElementById(idResult).innerHTML = "<b>Résultat :</b><br><br>" + texte.replace(/\n/g, "<br>");
-      parlerTexte(texte);
+    // Fonctions IA : DÉMO = sortie texte+vocal (nav) / Plug-in API quand tu veux
+    function genererWaouh() {
+      const demande = document.getElementById("waouh_demande").value;
+      const langue = document.getElementById("waouh_langue").value;
+      const humeur = document.getElementById("waouh_humeur").value;
+      let texte = "⏳ Démo IA : analyse complète, réponse ultra personnalisée à : " + demande;
+      if (langue) texte += " [Langue : " + langue + "]";
+      if (humeur) texte += " [Humeur : " + humeur + "]";
+      texte += "<br><br>— (Ici sortira la réponse personnalisée la plus complète du monde, adaptée à ta demande, ton contexte, ton humeur, ta langue, etc. 🚀)<br><br>**[Sortie audio en direct avec ElevenLabs dès que tu veux]**";
+      document.getElementById("waouhResult").innerHTML = texte;
+      parlerTexte("Voici ta réponse personnalisée, le contenu sera vocalisé ici bientôt.");
     }
-
-    // TTS navigateur (aucune clé, 100% gratuit)
-    function parlerTexte(text) {
-      const synth = window.speechSynthesis;
-      const utter = new SpeechSynthesisUtterance(text);
-      utter.lang = "fr-FR";
-      synth.speak(utter);
+    function genererHistoire() {
+      const cible = document.getElementById("cibleHistoire").value;
+      const langue = document.getElementById("langueHistoire").value;
+      let texte = "⏳ Démo IA : Histoire immersive et personnalisée pour " + cible + " [" + langue + "].";
+      texte += "<br><br>— (L’histoire détaillée, adaptée à l’âge, au thème, au prénom, etc., sortira ici et sera lue à haute voix dès que tu veux !)";
+      document.getElementById("resultHistoire").innerHTML = texte;
+      parlerTexte("Voici ton histoire personnalisée, disponible bientôt en audio.");
+    }
+    function genererBerceuse() {
+      const cible = document.getElementById("cibleBerceuse").value;
+      let texte = "⏳ Démo IA : Berceuse douce et sur-mesure pour " + cible + ".<br><br>(La vraie berceuse personnalisée sortira ici et en audio très bientôt !)";
+      document.getElementById("resultBerceuse").innerHTML = texte;
+      parlerTexte("Voici ta berceuse, elle sera chantée ici bientôt.");
+    }
+    function genererActu() {
+      const cible = document.getElementById("cibleActu").value;
+      let texte = "⏳ Démo IA : Résumé d’actualité ultra personnalisé sur : " + cible + ".<br><br>(Ici sortira le résumé complet, vocalisé, en temps réel, pour tout sujet.)";
+      document.getElementById("resultActu").innerHTML = texte;
+      parlerTexte("Voici ton résumé d’actualité, disponible bientôt en audio.");
+    }
+    function genererTraduction() {
+      const src = document.getElementById("langSrc").value;
+      const dest = document.getElementById("langDest").value;
+      const texte = document.getElementById("texteTraduire").value;
+      let sortie = "⏳ Démo IA : traduction de [" + texte + "] de " + src + " vers " + dest + ".<br><br>(Traduction réelle et lecture audio dès la connexion API)";
+      document.getElementById("resultTraduction").innerHTML = sortie;
+      parlerTexte("Voici ta traduction personnalisée. Audio et texte bientôt disponibles.");
+    }
+    function genererBlague() {
+      const cible = document.getElementById("cibleBlague").value;
+      let texte = "⏳ Démo IA : blague ultra personnalisée pour " + cible + ".<br><br>(Blague adaptée et lue à haute voix dès l’ajout IA)";
+      document.getElementById("resultBlague").innerHTML = texte;
+      parlerTexte("Voici ta blague personnalisée, elle sera racontée ici bientôt.");
+    }
+    function genererJeu() {
+      const cible = document.getElementById("cibleJeu").value;
+      let texte = "⏳ Démo IA : Jeu / devinette sur " + cible + ".<br><br>(La devinette ou le jeu interactif IA sortira ici très bientôt !)";
+      document.getElementById("resultJeu").innerHTML = texte;
+      parlerTexte("Voici ton jeu ou devinette, réponse audio bientôt !");
     }
   </script>
 </body>
