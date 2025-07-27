@@ -7,18 +7,19 @@
   <style>
     body {
       margin: 0;
-      background: #2e3c55; /* bleu pétrole, change si tu veux ! */
+      background: #f6efe7; /* Beige premium / blanc cassé luxe */
       font-family: 'Segoe UI', Arial, sans-serif;
-      color: #fff;
+      color: #212b36;
     }
     .header {
       text-align: center;
       margin-top: 2.1em;
-      color: #fff;
-      font-size: 2.2em;
+      color: #174271; /* Bleu profond stylé pour le titre, adapte si tu veux du doré */
+      font-size: 2.3em;
       font-weight: 700;
-      letter-spacing: 2px;
+      letter-spacing: 2.2px;
       font-family: 'Segoe UI', Arial, sans-serif;
+      text-shadow: 0 2px 7px #d3c4a0aa; /* effet lumière luxe doux */
     }
     .logo-zone {
       display: flex;
@@ -28,25 +29,25 @@
       margin-bottom: 1.5em;
     }
     .logo-img {
-      width: 150px;  /* Ajuste ici la taille du logo */
-      height: 150px;
+      width: 158px;  /* Logo bien visible */
+      height: 158px;
       object-fit: contain;
-      margin-bottom: 14px;
+      margin-bottom: 17px;
       background: transparent;
       border-radius: 24px;
-      box-shadow: 0 0 22px #0001;
+      box-shadow: 0 0 22px #ecd8ae40;
     }
     .card {
       background: #fff;
       border-radius: 22px;
       margin: 0 auto 1em auto;
-      box-shadow: 0 2px 18px #0002;
+      box-shadow: 0 2px 18px #0001;
       padding: 2em 1.2em;
-      max-width: 410px;
-      margin-top: 2.4em;
+      max-width: 420px;
+      margin-top: 2.5em;
     }
-    .title { font-size: 1.6em; margin-bottom: 10px; color: #0b355a; font-weight: 700;}
-    .subtitle { font-size:1.13em; color:#294564; margin-bottom:18px;}
+    .title { font-size: 1.6em; margin-bottom: 10px; color: #174271; font-weight: 700;}
+    .subtitle { font-size:1.13em; color:#3d5170; margin-bottom:18px;}
     .menu-btn {
       display: block; width: 100%; padding: 1em; margin: 12px 0;
       border: none; border-radius: 13px; font-size: 1.17em; background: #e9f1fb; color: #213a51; font-weight: 600; cursor: pointer;
@@ -64,8 +65,8 @@
     .result-zone { background: #f2f8fd; border-radius: 13px; margin: 14px 0; padding: 1em 1em; font-size: 1.1em; }
     .center { text-align: center; }
     @media (max-width:500px) {
-      .header { font-size: 1.12em;}
-      .logo-img { width: 104px; height: 104px; }
+      .header { font-size: 1.17em;}
+      .logo-img { width: 100px; height: 100px; }
       .card { padding: 1.1em 2vw; }
     }
   </style>
@@ -79,7 +80,7 @@
 
     <!-- Page d'accueil avec choix vocal/écrit -->
     <div id="accueil">
-      <div class="title">Bienvenue sur <span style="color:#206fc3;">NYVYA AI</span> !</div>
+      <div class="title">Bienvenue sur <span style="color:#174271;">NYVYA AI</span> !</div>
       <div class="subtitle">Veux-tu utiliser la <b>commande vocale</b> ou <b>écrite</b> ?</div>
       <div style="display:flex;gap:14px;justify-content:center;">
         <button class="menu-btn" style="width:48%;" onclick="setMode('vocal')">🎤 Mode vocal</button>
