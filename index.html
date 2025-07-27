@@ -8,101 +8,114 @@
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --beige-bg: #f7f3ef;
+      --beige-btn: #f3eadf;
+      --gold: #b89460;
+      --blue-petrol: #1b2631;
+      --white: #fff;
+      --gold-dark: #a18341;
+    }
     body {
       font-family: 'Montserrat', Arial, sans-serif;
-      background: #f7f3ef;
+      background: var(--beige-bg);
       margin: 0;
       min-height: 100vh;
     }
     .header {
       text-align: center;
-      margin-top: 40px;
-      color: #b89460;
+      margin-top: 36px;
+      color: var(--gold);
       font-family: 'Playfair Display', serif;
       font-weight: 900;
-      font-size: 2.4em;
-      letter-spacing: 2.2px;
+      font-size: 2.8em;
+      letter-spacing: 2.6px;
       text-transform: uppercase;
     }
     .logo-box {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 28px 0 6px 0;
+      margin: 30px 0 4px 0;
     }
     .logo-img {
-      width: 165px;
-      height: 165px;
+      width: 170px;
+      height: 170px;
       object-fit: contain;
-      border-radius: 36px;
+      border-radius: 40px;
       background: none;
       box-shadow: 0 8px 38px #b8946045;
       border: 0;
       display: block;
     }
     .main-card {
-      background: #1b2631;
-      color: #b89460;
-      border-radius: 25px;
+      background: var(--blue-petrol);
+      color: var(--gold);
+      border-radius: 28px;
       box-shadow: 0 4px 22px #0002;
-      padding: 48px 15px 35px 15px;
-      max-width: 480px;
-      margin: 0 auto 32px auto;
+      padding: 46px 15px 34px 15px;
+      max-width: 530px;
+      margin: 0 auto 36px auto;
       text-align: center;
       margin-top: 34px;
     }
     .main-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.28em;
+      font-size: 1.35em;
       font-weight: 900;
       text-transform: uppercase;
-      color: #b89460;
-      margin-bottom: 14px;
-      letter-spacing: 1.1px;
+      color: var(--gold);
+      margin-bottom: 18px;
+      letter-spacing: 1.2px;
     }
     .subtitle {
-      color: #b89460;
-      font-size: 1.08em;
+      color: #f7f3ef;
+      font-size: 1.11em;
       font-weight: 500;
-      margin-bottom: 18px;
+      margin-bottom: 22px;
+      letter-spacing: 0.5px;
+    }
+    .highlight {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.07em;
     }
     .menu-btn {
-      width: 47%;
-      margin: 9px 2%;
-      background: #fff;
+      width: 48%;
+      margin: 10px 1%;
+      background: var(--beige-btn);
       border: none;
-      border-radius: 13px;
-      color: #b89460;
+      border-radius: 18px;
+      color: var(--gold);
       font-weight: 700;
-      font-size: 1.17em;
-      padding: 1.1em;
-      transition: background 0.14s;
-      box-shadow: 0 2px 8px #0001;
+      font-size: 1.18em;
+      padding: 1.13em 0;
+      transition: background 0.15s, color 0.15s;
+      box-shadow: 0 2px 10px #0001;
       cursor: pointer;
+      letter-spacing: 0.7px;
     }
     .menu-btn:hover {
-      background: #f7f3ef;
-      color: #a18341;
+      background: var(--white);
+      color: var(--gold-dark);
     }
     .back-btn {
-      background: #fff;
-      color: #b89460;
+      background: var(--white);
+      color: var(--gold);
       margin-top: 18px;
       font-weight: 600;
-      border: 2px solid #b89460;
+      border: 2px solid var(--gold);
     }
-    /* --- Responsive --- */
     @media (max-width: 540px) {
-      .header { font-size: 1.14em; }
-      .logo-img { width: 110px; height: 110px; }
-      .main-card { padding: 20px 2vw 18px 2vw; }
+      .header { font-size: 1.24em; }
+      .logo-img { width: 108px; height: 108px; }
+      .main-card { padding: 19px 2vw 12px 2vw; }
     }
-    /* Section IA personnalisée et formulaires */
     .form-section {
       margin: 1.1em 0 0.2em 0;
-      color: #b89460;
+      color: var(--gold);
     }
-    label { font-weight: 600; color: #b89460; }
+    label { font-weight: 600; color: var(--gold); }
     input, textarea, select {
       padding: 8px 13px;
       border-radius: 9px;
@@ -118,10 +131,18 @@
       border-radius: 13px;
       margin: 14px 0;
       padding: 1em 1em;
-      font-size: 1.08em;
+      font-size: 1.09em;
       color: #253344;
     }
     .center { text-align: center; }
+    /* Rectangle larges pour menu principal */
+    #menu-principal .menu-btn {
+      width: 100%;
+      display: block;
+      margin: 10px 0;
+      padding: 1.17em 0;
+      font-size: 1.11em;
+    }
   </style>
 </head>
 <body>
@@ -134,7 +155,7 @@
   <div class="main-card" id="main-card">
     <div id="accueil">
       <div class="main-title">BIENVENUE SUR NYVYA AI</div>
-      <div class="subtitle">Veux-tu utiliser la <b>commande vocale</b> ou <b>écrite</b> ?</div>
+      <div class="subtitle">Veux-tu utiliser la <span class="highlight">commande vocale</span> ou <span class="highlight">écrite</span> ?</div>
       <div style="display:flex;gap:16px;justify-content:center;">
         <button class="menu-btn" style="width:48%;" onclick="setMode('vocal')">🎤 Mode vocal</button>
         <button class="menu-btn" style="width:48%;" onclick="setMode('ecrit')">⌨️ Mode écrit</button>
