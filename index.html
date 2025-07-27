@@ -5,167 +5,176 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NYVYA IA Phone</title>
   <style>
-    body {
-      background: #f6f8fe;
-      font-family: system-ui,sans-serif;
-      margin: 0; padding: 0;
-    }
-    .mainbox {
-      max-width: 440px;
-      margin: 25px auto 0 auto;
-      background: #fff;
-      border-radius: 28px;
-      box-shadow: 0 3px 24px #4460ad18;
-      padding: 28px 12px 18px 12px;
-    }
-    .zone {
-      margin: 20px 0 0 0;
-      padding: 0;
-      border-radius: 20px;
-      background: #f4f7ff;
-      box-shadow: 0 2px 12px #2230660d;
-    }
-    h1 {
-      font-size: 2.1em; text-align: center;
-      margin-top: 0.5em; margin-bottom: 0.3em;
-      font-weight: bold;
-      background: linear-gradient(92deg,#2346ff,#4fe2c2 60%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-    .card-btn {
-      width: 92%;
-      margin: 13px auto;
-      display: block;
-      font-size: 1.17em;
-      background: #eef2fc;
-      color: #181c32;
-      border: none;
-      border-radius: 15px;
-      box-shadow: 0 2px 12px #4450ad0d;
-      padding: 15px 0;
-      font-weight: 500;
-      cursor: pointer;
-      transition: 0.13s;
-      text-align: left;
-      outline: none;
-    }
-    .card-btn:hover {
-      background: #e2ecfb;
-      color: #2845ae;
-      box-shadow: 0 4px 20px #3b67f722;
-    }
-    .topbox {
-      background: #f5faff;
-      padding: 14px 8px 18px 8px;
-      border-radius: 18px;
-      box-shadow: 0 1px 5px #22306610;
-      margin-bottom: 16px;
-      text-align: center;
-    }
-    .topbox strong {
-      font-size: 1.05em;
-      color: #253099;
-      font-weight: bold;
-      display: block;
-      margin-bottom: 4px;
-    }
-    .mode-btns {
-      display: flex;
-      gap: 18px;
-      justify-content: center;
-      margin: 8px 0 0 0;
-    }
-    .mode-btn {
-      padding: 11px 26px;
-      border-radius: 12px;
-      border: none;
-      font-size: 1.04em;
-      background: #eaf2ff;
-      color: #222;
-      font-weight: 500;
-      cursor: pointer;
-      box-shadow: 0 1px 7px #294b8d11;
-      transition: 0.12s;
-      display: flex; align-items: center; gap: 9px;
-    }
-    .mode-btn:hover { background: #dbe7fd; }
-    .subtitle {
-      text-align: center; font-size: 1.09em; margin: 12px 0 3px 0;
-      font-weight: 500; color: #38479b;
-      letter-spacing: 0.02em;
-    }
-    @media (max-width: 600px) {
-      .mainbox { margin: 0; border-radius: 0; box-shadow: none; }
-      h1 { font-size: 1.44em; }
-      .topbox { padding: 9px 3px 14px 3px; }
-      .card-btn { font-size: 1.05em; }
+    body { font-family: system-ui, sans-serif; margin: 0; background: #f6f8fb; }
+    .container { max-width: 480px; margin: 0 auto; padding: 18px 0; }
+    h1 { text-align: center; color: #222; margin-bottom: 0.2em; }
+    .menu-block { background: #fff; border-radius: 18px; box-shadow: 0 2px 8px #0001; margin: 18px 0; padding: 20px 0 10px 0; }
+    .menu-title { text-align: center; font-size: 1.45em; margin-bottom: 10px; color: #2177B6; font-weight: bold;}
+    .sub-block { text-align: center; margin-bottom: 6px; }
+    .menu-btn { display: block; width: 90%; margin: 10px auto; padding: 16px 8px; border: none; border-radius: 16px;
+      background: #edf1fa; color: #1a2333; font-size: 1.18em; font-weight: 600; box-shadow: 0 1px 6px #0001;
+      cursor: pointer; transition: 0.12s; }
+    .menu-btn:hover { background: #e2ecfd; }
+    .voice-choice { display: flex; justify-content: center; gap: 24px; margin-bottom: 12px; }
+    .voice-btn { border: none; border-radius: 14px; padding: 13px 32px; font-size: 1.12em; font-weight: 500;
+      background: #dde7fa; cursor: pointer; box-shadow: 0 1px 6px #0001; }
+    .voice-btn.selected { background: #b9d3f7; color: #10305e; }
+    .small { font-size: 0.99em; color: #3a5270; margin-bottom: 6px;}
+    .modal { position: fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,0.18); display: flex; align-items:center; justify-content:center; z-index:100;}
+    .modal-content { background:#fff; padding:28px; border-radius:15px; text-align:center; min-width:220px;}
+    @media(max-width: 520px) {
+      .container { padding: 0 3vw; }
     }
   </style>
 </head>
 <body>
-  <div class="mainbox">
-    <h1>NYVYA IA Phone</h1>
-
-    <div class="topbox">
-      <strong>Bienvenue sur NYVYA IA !</strong>
-      Veux-tu utiliser la <b>commande vocale</b> ou <b>écrite</b> ?
-      <div class="mode-btns" style="margin-top: 13px;">
-        <button class="mode-btn" onclick="choisirMode('vocal')">🎤 Mode vocal</button>
-        <button class="mode-btn" onclick="choisirMode('écrit')">⌨️ Mode écrit</button>
+  <div class="container">
+    <h1><span style="color:#13bb97">NYVYA IA Phone</span></h1>
+    <div id="welcomeBlock" class="menu-block">
+      <div class="menu-title" id="menuTitle">Bienvenue sur NYVYA IA !</div>
+      <div class="small" id="voiceAsk">Veux-tu utiliser la <b>commande vocale</b> ou <b>écrite</b> ?</div>
+      <div class="voice-choice">
+        <button id="btnVoice" class="voice-btn"><span>🎤</span> Mode vocal</button>
+        <button id="btnText" class="voice-btn"><span>⌨️</span> Mode écrit</button>
       </div>
     </div>
 
-    <div class="zone" id="menu-principal">
-      <div class="subtitle">Choisis une fonctionnalité :</div>
-      <button class="card-btn" onclick="ouvrirAssistant()">
-        ✨ Assistant personnalisé / Packs Waouh
-      </button>
-      <button class="card-btn" onclick="ouvrirEspaceSpecialise()">
-        🫂 Espace spécialisé : Parents, Nounous, Crèches, Enfants, Pro
-      </button>
-      <button class="card-btn" onclick="ouvrirTraduction()">
-        🌍 Traduction vocale bi-directionnelle
-      </button>
-      <button class="card-btn" onclick="ouvrirActus()">
-        📰 Résumé Actus 5-10min (tout sujet, tout pays)
-      </button>
-      <button class="card-btn" onclick="ouvrirHistoire()">
-        📖 Histoire IA ultra-personnalisée
-      </button>
-      <button class="card-btn" onclick="ouvrirBerceuse()">
-        🎶 Berceuse IA personnalisée
-      </button>
-      <button class="card-btn" onclick="ouvrirJeu()">
-        🧩 Jeu / Devinette IA
-      </button>
-      <button class="card-btn" onclick="ouvrirBlague()">
-        😂 Blague sur mesure IA
-      </button>
+    <div id="mainMenu" class="menu-block" style="display:none">
+      <div class="menu-title" style="color:#234;">Choisis une fonctionnalité :</div>
+      <button class="menu-btn" onclick="go('assistant')">✨ Assistant personnalisé / Packs Waouh</button>
+      <button class="menu-btn" onclick="go('espace')">👥 Espace spécialisé : Parents, Nounous, Crèches, Enfants, Pro</button>
+      <button class="menu-btn" onclick="go('traduction')">🌍 Traduction vocale bi-directionnelle</button>
+      <button class="menu-btn" onclick="go('actus')">📰 Résumé Actus 5-10min (tout sujet, tout pays)</button>
+      <button class="menu-btn" onclick="go('histoire')">📖 Histoire IA ultra-personnalisée</button>
+      <button class="menu-btn" onclick="go('berceuse')">🎶 Berceuse IA personnalisée</button>
+      <button class="menu-btn" onclick="go('jeu')">🧩 Jeu / Devinette IA</button>
+      <button class="menu-btn" onclick="go('blague')">😂 Blague sur mesure IA</button>
     </div>
-
-    <!-- Les zones/fonctions IA à afficher plus tard ici -->
-    <div id="zone-fonction"></div>
   </div>
-  <footer style="text-align:center;font-size:0.99em;color:#86ac9e;margin:17px 0 8px 0;">
-    laabati.github.io
-  </footer>
+
+  <div id="modal" class="modal" style="display:none"><div class="modal-content" id="modalContent"></div></div>
 
   <script>
-    // Ici tu ajoutes ta logique IA plus tard (voir messages précédents pour intégration vocale)
-    function choisirMode(mode) {
-      // A compléter : activer le mode vocal ou écrit (voir le script vocal de l’exemple plus haut)
-      alert("Mode choisi : " + mode + ". (Fonctionalité à brancher ici)");
+    // === VARS & UTILS ===
+    let mode = ""; // "vocal" ou "texte"
+    let isListening = false;
+    let recognition, synth = window.speechSynthesis;
+
+    function speak(txt, cb) {
+      if (!txt) return;
+      let u = new SpeechSynthesisUtterance(txt);
+      u.lang = "fr-FR";
+      u.rate = 1;
+      u.onend = function(){ if(cb) setTimeout(cb, 160); };
+      synth.cancel(); synth.speak(u);
     }
-    // Placeholders à compléter selon chaque bouton
-    function ouvrirAssistant() { alert("Assistant personnalisé à intégrer ici."); }
-    function ouvrirEspaceSpecialise() { alert("Espace spécialisé à intégrer ici."); }
-    function ouvrirTraduction() { alert("Traduction à intégrer ici."); }
-    function ouvrirActus() { alert("Résumé actus à intégrer ici."); }
-    function ouvrirHistoire() { alert("Histoire IA à intégrer ici."); }
-    function ouvrirBerceuse() { alert("Berceuse IA à intégrer ici."); }
-    function ouvrirJeu() { alert("Jeu IA à intégrer ici."); }
-    function ouvrirBlague() { alert("Blague IA à intégrer ici."); }
+
+    function askWelcome() {
+      speak("Bienvenue sur NYVYA IA ! Veux-tu utiliser la commande vocale ou écrite ?", () => listenWelcome());
+    }
+
+    // === Speech Recognition INIT ===
+    function getRecognition() {
+      if (!('webkitSpeechRecognition' in window)) return null;
+      let rec = new webkitSpeechRecognition();
+      rec.lang = "fr-FR";
+      rec.interimResults = false;
+      rec.maxAlternatives = 1;
+      return rec;
+    }
+
+    function listenWelcome() {
+      recognition = getRecognition();
+      if (!recognition) return;
+      isListening = true;
+      recognition.start();
+      recognition.onresult = (event) => {
+        let res = event.results[0][0].transcript.toLowerCase();
+        if (res.includes("vocal")) selectMode("vocal");
+        else if (res.includes("écrit") || res.includes("texte")) selectMode("texte");
+        else speak("Je n'ai pas compris. Veux-tu utiliser la commande vocale ou écrite ?", () => listenWelcome());
+      };
+      recognition.onerror = (e) => {
+        isListening = false;
+        speak("Je n'ai pas compris. Veux-tu utiliser la commande vocale ou écrite ?", () => listenWelcome());
+      };
+    }
+
+    // === Mode selection ===
+    function selectMode(newMode) {
+      mode = newMode;
+      document.getElementById('welcomeBlock').style.display = "none";
+      document.getElementById('mainMenu').style.display = "";
+      if (mode === "vocal") {
+        speak("Mode vocal activé. Dites le nom de la fonctionnalité souhaitée.", listenMenu);
+      }
+    }
+    document.getElementById('btnVoice').onclick = () => selectMode("vocal");
+    document.getElementById('btnText').onclick = () => selectMode("texte");
+
+    // === Main Menu - VOCAL ===
+    function listenMenu() {
+      recognition = getRecognition();
+      if (!recognition) return;
+      isListening = true;
+      recognition.start();
+      recognition.onresult = (event) => {
+        let res = event.results[0][0].transcript.toLowerCase();
+        // Mapping vocal to menu
+        if (res.includes("assistant") || res.includes("pack")) go("assistant");
+        else if (res.includes("espace") || res.includes("parent") || res.includes("nounou") || res.includes("crèche") || res.includes("enfant") || res.includes("pro")) go("espace");
+        else if (res.includes("traduction") || res.includes("vocale")) go("traduction");
+        else if (res.includes("actu") || res.includes("actualité") || res.includes("résumé")) go("actus");
+        else if (res.includes("histoire")) go("histoire");
+        else if (res.includes("berceuse") || res.includes("chanson")) go("berceuse");
+        else if (res.includes("jeu") || res.includes("devinette")) go("jeu");
+        else if (res.includes("blague")) go("blague");
+        else if (res.includes("retour") || res.includes("menu")) { 
+          document.getElementById('mainMenu').style.display = "";
+          speak("De retour au menu. Dites le nom d'une fonctionnalité.", listenMenu);
+        }
+        else speak("Je n'ai pas compris. Répétez le nom de la fonctionnalité souhaitée.", listenMenu);
+      };
+      recognition.onerror = (e) => {
+        isListening = false;
+        speak("Je n'ai pas compris. Répétez le nom de la fonctionnalité souhaitée.", listenMenu);
+      };
+    }
+
+    // === MENU NAV ===
+    function go(type) {
+      // Ici tu mets l'appel de chaque vraie fonctionnalité (ou affiche une modale temporaire)
+      let titres = {
+        "assistant": "Assistant personnalisé à intégrer ici.",
+        "espace": "Espace spécialisé à intégrer ici.",
+        "traduction": "Traduction à intégrer ici.",
+        "actus": "Résumé d'actualités à intégrer ici.",
+        "histoire": "Histoire IA à intégrer ici.",
+        "berceuse": "Berceuse IA à intégrer ici.",
+        "jeu": "Jeu/Devinette IA à intégrer ici.",
+        "blague": "Blague IA à intégrer ici."
+      };
+      showModal(titres[type]);
+      // Pour le vocal, relance l'écoute après fermeture du modal :
+      if (mode === "vocal") setTimeout(listenMenu, 1300);
+    }
+
+    // === MODAL SIMPLE POUR TEST ===
+    function showModal(msg) {
+      let m = document.getElementById('modal');
+      document.getElementById('modalContent').innerHTML = msg + "<br><br><button onclick='closeModal()' style='padding:10px 30px;font-size:1em;border-radius:12px;margin-top:8px'>Fermer</button>";
+      m.style.display = "flex";
+    }
+    function closeModal() {
+      document.getElementById('modal').style.display = "none";
+    }
+
+    // === AUTO INIT ===
+    window.onload = () => {
+      document.getElementById('welcomeBlock').style.display = "";
+      document.getElementById('mainMenu').style.display = "none";
+      setTimeout(() => { askWelcome(); }, 300);
+    };
   </script>
 </body>
 </html>
