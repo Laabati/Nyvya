@@ -5,29 +5,7 @@
   <title>NYVYA IA Phone</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f7f8fa; margin: 0; } 
-    <!-- Logo NYVYA IA (custom SVG intégré, bleu profond & or foncé luxe) -->
-<div style="display:flex; flex-direction:column; align-items:center; margin-top:32px;">
-  <svg width="180" height="180" viewBox="0 0 200 200" style="background:#182232; border-radius:50%; box-shadow:0 2px 10px #0004;">
-    <!-- Cercle extérieur -->
-    <circle cx="100" cy="100" r="92" stroke="#C7A269" stroke-width="6" fill="#182232"/>
-    <!-- Hémisphère gauche (cerveau stylisé) -->
-    <path d="M55 60 Q50 80 75 92 Q55 110 85 115 Q70 125 98 135 Q88 140 101 152" fill="none" stroke="#C7A269" stroke-width="4"/>
-    <path d="M55 100 Q62 110 77 107" fill="none" stroke="#C7A269" stroke-width="3"/>
-    <path d="M60 85 Q67 98 80 93" fill="none" stroke="#C7A269" stroke-width="2.5"/>
-    <path d="M70 65 Q76 73 89 77" fill="none" stroke="#C7A269" stroke-width="2.5"/>
-    <!-- Ligne centrale séparation cerveau/visage -->
-    <path d="M100 30 L100 170" stroke="#C7A269" stroke-width="4"/>
-    <!-- Profil visage droit (traits ouverts, comme 1ère image) -->
-    <path d="M100 55 Q145 67 130 100 Q147 116 125 130 Q138 140 114 158" fill="none" stroke="#C7A269" stroke-width="4"/>
-    <!-- Front jusqu'à nez (haut non collé) -->
-    <path d="M100 40 Q140 55 130 100" fill="none" stroke="#C7A269" stroke-width="4"/>
-    <!-- Menton ouvert -->
-    <path d="M123 150 Q116 163 100 150" fill="none" stroke="#C7A269" stroke-width="4"/>
-    <!-- "NYVYA" en tout petit sur le visage (premium, subtil) -->
-    <text x="116" y="110" font-size="15" fill="#C7A269" font-family="Georgia, serif" letter-spacing="2" style="font-weight:bold;">NYVYA</text>
-  </svg>
-</div>
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #16202a; margin: 0; }
     .header { text-align: center; margin-top: 2em; color: #009b7e; font-size: 2.2em; font-weight: 700; letter-spacing: 2px; }
     .card {
       background: #fff; border-radius: 20px; margin: 2em auto 1em auto;
@@ -58,6 +36,28 @@
   </style>
 </head>
 <body>
+
+  <!-- Logo NYVYA IA (SVG custom) -->
+  <div style="display:flex; flex-direction:column; align-items:center; margin-top:22px; margin-bottom:2px;">
+    <svg width="120" height="120" viewBox="0 0 200 200" fill="none">
+      <!-- Cercle extérieur -->
+      <circle cx="100" cy="100" r="92" stroke="#C7A26D" stroke-width="7"/>
+      <!-- Hémisphère gauche (cerveau stylisé) -->
+      <path d="M55 60 Q50 80 75 92 Q55 110 85 110" fill="none" stroke="#C7A26D" stroke-width="5"/>
+      <path d="M55 100 Q62 110 77 107" fill="none" stroke="#C7A26D" stroke-width="4"/>
+      <path d="M60 85 Q67 98 80 93" fill="none" stroke="#C7A26D" stroke-width="4"/>
+      <path d="M70 65 Q76 73 89 77" fill="none" stroke="#C7A26D" stroke-width="4"/>
+      <!-- Ligne centrale séparation cerveau/visage -->
+      <path d="M100 30 L100 170" stroke="#C7A26D" stroke-width="6"/>
+      <!-- Profil visage droit (traits ouverts, menton et front ouverts) -->
+      <path d="M100 55 Q145 67 130 100 Q147 116 110 150" fill="none" stroke="#C7A26D" stroke-width="5"/>
+      <!-- Front jusqu'à nez (haut non collé) -->
+      <path d="M100 60 Q140 55 120 100" fill="none" stroke="#C7A26D" stroke-width="3"/>
+      <!-- "NYVYA" sur le visage en petit, intégré -->
+      <text x="120" y="120" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#C7A26D" letter-spacing="2" style="font-weight:bold;">NYVYA</text>
+    </svg>
+  </div>
+
   <div class="header">NYVYA IA Phone</div>
   <div class="card" id="main-card">
 
@@ -87,16 +87,16 @@
 
     <!-- Zone dynamique pour affichage des fonctions -->
     <div id="zone"></div>
+
   </div>
   <script>
-    // --- Version SANS CLE IA ---
-
+    // Gestion du mode (vocal ou écrit)
     let mode = "";
     function setMode(m) {
       mode = m;
       document.getElementById("accueil").style.display = "none";
       document.getElementById("menu-principal").style.display = "";
-      document.getElementById("zone").innerHTML = "";
+      document.getElementById("zone").innerHTML = ""; // reset
     }
     function retourAccueil() {
       document.getElementById("menu-principal").style.display = "none";
@@ -108,6 +108,7 @@
       document.getElementById("zone").innerHTML = "";
       window.scrollTo(0,0);
     }
+    // Fonction de navigation vers chaque outil
     function ouvrirFonction(type) {
       let html = "";
       if (type === "waouh") {
@@ -116,7 +117,7 @@
             <div class="title" style="font-size:1.23em;">✨ Assistant personnalisé / Packs Waouh</div>
             <label>Décris ton besoin, ta situation, ton problème ou ton objectif précis :</label>
             <textarea id="waouhDemande" placeholder="Exemple : Je prépare un voyage, j'ai un souci pro, j'ai besoin d'un conseil sur la santé, etc."></textarea>
-            <button class="menu-btn" onclick="genererTexteDemo('waouh')">Obtenir la solution personnalisée</button>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Obtenir la solution personnalisée</button>
             <div class="result-zone" id="waouhResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
@@ -134,7 +135,7 @@
               <option>Pro / Éducateurs</option>
             </select>
             <textarea id="specialDemande" placeholder="Décris ta question, besoin, ou demande (éducation, suivi enfant, problème concret, etc.)"></textarea>
-            <button class="menu-btn" onclick="genererTexteDemo('special')">Obtenir l'aide personnalisée</button>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Obtenir l'aide personnalisée</button>
             <div class="result-zone" id="specialResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
@@ -147,7 +148,7 @@
             <input id="tradLangues" placeholder="Ex : français vers arabe" />
             <label>Texte ou message à traduire :</label>
             <textarea id="tradTexte" placeholder="Écris ou dicte ici…"></textarea>
-            <button class="menu-btn" onclick="genererTexteDemo('traduction')">Traduire</button>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Traduire</button>
             <div class="result-zone" id="traductionResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
@@ -158,7 +159,7 @@
             <div class="title" style="font-size:1.13em;">📰 Résumé Actus 5–10min</div>
             <label>Quel sujet, pays, thème ou actualité précise ?</label>
             <input id="actusSujet" placeholder="Ex : météo France, foot, économie, info monde, etc."/>
-            <button class="menu-btn" onclick="genererTexteDemo('actus')">Obtenir le résumé</button>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Obtenir le résumé</button>
             <div class="result-zone" id="actusResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
@@ -169,7 +170,7 @@
             <div class="title">📖 Histoire IA ultra-personnalisée</div>
             <label>Pour qui, quel âge, thème, style ou ambiance ?</label>
             <input id="histoireCible" placeholder="Ex : Sara, 7 ans, adore les animaux, ton drôle…" />
-            <button class="menu-btn" onclick="genererTexteDemo('histoire')">Générer l'histoire</button>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Générer l'histoire</button>
             <div class="result-zone" id="histoireResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
@@ -180,7 +181,7 @@
             <div class="title">🎶 Berceuse IA personnalisée</div>
             <label>Pour qui, âge, humeur, bruit de fond, style… ?</label>
             <input id="berceuseCible" placeholder="Ex : Wharys, 2 ans, ambiance pluie, triste…" />
-            <button class="menu-btn" onclick="genererTexteDemo('berceuse')">Générer la berceuse</button>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Générer la berceuse</button>
             <div class="result-zone" id="berceuseResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
@@ -191,7 +192,7 @@
             <div class="title">🧩 Jeu / Devinette IA</div>
             <label>Type de jeu ou devinette (facile, quiz, enfant, etc.) :</label>
             <input id="jeuType" placeholder="Ex : Devinette pour enfant de 6 ans" />
-            <button class="menu-btn" onclick="genererTexteDemo('jeu')">Lancer le jeu / devinette</button>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Lancer le jeu / devinette</button>
             <div class="result-zone" id="jeuResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
@@ -202,7 +203,7 @@
             <div class="title">😂 Blague sur mesure IA</div>
             <label>Type, sujet, public, prénom, style… :</label>
             <input id="blagueCible" placeholder="Ex : Blague courte pour enfant sur le foot" />
-            <button class="menu-btn" onclick="genererTexteDemo('blague')">Générer la blague</button>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Générer la blague</button>
             <div class="result-zone" id="blagueResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
@@ -211,19 +212,6 @@
       document.getElementById("menu-principal").style.display = "none";
       document.getElementById("zone").innerHTML = html;
       window.scrollTo(0,0);
-    }
-    // Version demo
-    function genererTexteDemo(type) {
-      let id = "";
-      if (type === "waouh") id = "waouhResult";
-      if (type === "special") id = "specialResult";
-      if (type === "traduction") id = "traductionResult";
-      if (type === "actus") id = "actusResult";
-      if (type === "histoire") id = "histoireResult";
-      if (type === "berceuse") id = "berceuseResult";
-      if (type === "jeu") id = "jeuResult";
-      if (type === "blague") id = "blagueResult";
-      document.getElementById(id).innerHTML = "<b>Résultat de test IA :</b><br><br>Contenu généré (démo, clé IA à intégrer plus tard)";
     }
   </script>
 </body>
