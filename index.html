@@ -2,32 +2,46 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <title>NYVYA IA Phone</title>
+  <title>NYVYA PHONE AI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
       font-family: 'Segoe UI', Arial, sans-serif;
-      background: #202b32; /* bleu nuit profond */
+      background: #17212d; /* Bleu nuit premium */
       margin: 0;
     }
     .header {
       text-align: center;
-      margin-top: 1.5em;
-      color: #009b7e;
-      font-size: 2.2em;
-      font-weight: 700;
-      letter-spacing: 2px;
+      margin-top: 1.4em;
+      font-size: 2.18em;
+      font-weight: 800;
+      letter-spacing: 2.3px;
+      color: #fff;
+      text-shadow: 0 3px 14px #0009, 0 1px 0 #2227;
+    }
+    .logo-top {
+      display: flex;
+      justify-content: center;
+      margin: 20px 0 6px 0;
+    }
+    .logo-top img {
+      max-width: 165px;
+      max-height: 165px;
+      border-radius: 24px;
+      box-shadow: 0 2px 24px #0004;
+      background: #17212d;
+      object-fit: contain;
     }
     .card {
       background: #fff;
       border-radius: 20px;
-      margin: 2em auto 1em auto;
+      margin: 2.6em auto 1em auto;
       box-shadow: 0 2px 10px #0001;
-      padding: 2em 1.2em;
-      max-width: 410px;
+      padding: 2.2em 1.2em 1.2em 1.2em;
+      max-width: 430px;
     }
-    .title { font-size: 1.5em; margin-bottom: 8px; color: #0b355a; font-weight: 700;}
-    .subtitle {font-size:1.1em;color:#294564;margin-bottom:18px;}
+    .title { font-size: 1.5em; margin-bottom: 8px; color: #184e96; font-weight: 700;}
+    .subtitle {font-size:1.11em;color:#294564;margin-bottom:18px;}
     .menu-btn {
       display: block; width: 100%; padding: 1em; margin: 12px 0;
       border: none; border-radius: 13px; font-size: 1.17em; background: #e9f1fb; color: #213a51; font-weight: 600; cursor: pointer;
@@ -46,35 +60,24 @@
     .center { text-align: center; }
     @media (max-width:500px) {
       .card { padding: 1.1em 2vw; }
-      .header { font-size: 1.15em;}
-    }
-    /* Logo centré en haut */
-    .logo-top {
-      display: flex;
-      justify-content: center;
-      margin-top: 38px;
-      margin-bottom: 8px;
-    }
-    .logo-top img {
-      max-width: 140px;
-      height: auto;
-      border-radius: 18px;
-      box-shadow: 0 2px 12px #0003;
+      .header { font-size: 1.04em;}
+      .logo-top img { max-width: 108px; max-height: 108px; }
     }
   </style>
 </head>
 <body>
-  <!-- LOGO NYVYA CENTRÉ EN HAUT -->
+  <!-- TITRE MODERNE AU-DESSUS DU LOGO -->
+  <div class="header">NYVYA PHONE AI</div>
+  <!-- LOGO AGRANDI, CENTRÉ -->
   <div class="logo-top">
     <img src="Logo nyvya.PNG" alt="Logo NYVYA">
   </div>
 
-  <div class="header">NYVYA IA Phone</div>
   <div class="card" id="main-card">
 
     <!-- Page d'accueil avec choix vocal/écrit -->
     <div id="accueil">
-      <div class="title">Bienvenue sur <span style="color:#0773c5;">NYVYA IA</span> !</div>
+      <div class="title">Bienvenue sur <span style="color:#184e96;">NYVYA AI</span> !</div>
       <div class="subtitle">Veux-tu utiliser la <b>commande vocale</b> ou <b>écrite</b> ?</div>
       <div style="display:flex;gap:14px;justify-content:center;">
         <button class="menu-btn" style="width:48%;" onclick="setMode('vocal')">🎤 Mode vocal</button>
