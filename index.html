@@ -60,12 +60,14 @@
       }
       else if (type === "berceuse") {
         html = `
-        <div class="formzone">
-          <h2>Bercause IA personnalisée</h2>
-          <label>Pour qui ? (prénom, âge, humeur, bruit de fond, style…)</label><br>
-          <input id="cibleBerceuse" style="width:85%;margin:10px 0" placeholder="ex: Izak, 5 ans, aime les voitures, bruit de mer" /><br>
-          <button onclick="genererTexteIA('berceuse')">Générer la berceuse IA</button>
-        </div>
+        <div class="section">
+  <h2>Berceuse IA personnalisée</h2>
+  <label for="input-berceuse">
+    Pour qui ? <small>(prénom, âge, humeur, ambiance, bruit de fond, style…)</small>
+  </label>
+  <input id="input-berceuse" type="text" placeholder="ex : Wharys, 7 ans, adore la mer, ambiance calme, bruit des vagues">
+  <button id="btn-berceuse">Générer la berceuse IA</button>
+</div>
         <div id="resultBerceuse" style="margin-top:1.5em"></div>
         <button onclick="menu('')">⬅️ Retour</button>
         `;
