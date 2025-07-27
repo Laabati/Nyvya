@@ -7,19 +7,19 @@
   <style>
     body {
       margin: 0;
-      background: #f6efe7; /* Beige premium / blanc cassé luxe */
+      background: #f6efe7; /* Beige premium */
       font-family: 'Segoe UI', Arial, sans-serif;
       color: #212b36;
     }
     .header {
       text-align: center;
       margin-top: 2.1em;
-      color: #174271; /* Bleu profond stylé pour le titre, adapte si tu veux du doré */
+      color: #c7a76a; /* Doré premium */
       font-size: 2.3em;
       font-weight: 700;
       letter-spacing: 2.2px;
       font-family: 'Segoe UI', Arial, sans-serif;
-      text-shadow: 0 2px 7px #d3c4a0aa; /* effet lumière luxe doux */
+      text-shadow: 0 2px 7px #d3c4a0aa;
     }
     .logo-zone {
       display: flex;
@@ -29,7 +29,7 @@
       margin-bottom: 1.5em;
     }
     .logo-img {
-      width: 158px;  /* Logo bien visible */
+      width: 158px;
       height: 158px;
       object-fit: contain;
       margin-bottom: 17px;
@@ -46,7 +46,7 @@
       max-width: 420px;
       margin-top: 2.5em;
     }
-    .title { font-size: 1.6em; margin-bottom: 10px; color: #174271; font-weight: 700;}
+    .title { font-size: 1.6em; margin-bottom: 10px; color: #c7a76a; font-weight: 700;}  /* Doré premium */
     .subtitle { font-size:1.13em; color:#3d5170; margin-bottom:18px;}
     .menu-btn {
       display: block; width: 100%; padding: 1em; margin: 12px 0;
@@ -77,17 +77,15 @@
     <img src="Logo nyvya.PNG" alt="Logo NYVYA" class="logo-img">
   </div>
   <div class="card" id="main-card">
-
     <!-- Page d'accueil avec choix vocal/écrit -->
     <div id="accueil">
-      <div class="title">Bienvenue sur <span style="color:#174271;">NYVYA AI</span> !</div>
+      <div class="title">Bienvenue sur <span style="color:#c7a76a;">NYVYA AI</span> !</div>
       <div class="subtitle">Veux-tu utiliser la <b>commande vocale</b> ou <b>écrite</b> ?</div>
       <div style="display:flex;gap:14px;justify-content:center;">
         <button class="menu-btn" style="width:48%;" onclick="setMode('vocal')">🎤 Mode vocal</button>
         <button class="menu-btn" style="width:48%;" onclick="setMode('ecrit')">⌨️ Mode écrit</button>
       </div>
     </div>
-
     <!-- Menu principal -->
     <div id="menu-principal" style="display:none;">
       <div class="title center" style="margin-bottom:6px;">Choisis une fonctionnalité :</div>
@@ -101,7 +99,6 @@
       <button class="menu-btn" onclick="ouvrirFonction('blague')">😂 Blague sur mesure IA</button>
       <button class="menu-btn back-btn" onclick="retourAccueil()">⏪ Retour mode</button>
     </div>
-
     <!-- Zone dynamique pour affichage des fonctions -->
     <div id="zone"></div>
   </div>
