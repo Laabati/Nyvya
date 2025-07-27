@@ -2,150 +2,206 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <link rel="manifest" href="/manifest.webmanifest" />
+  <title>🌟 Nyvya IA Phone</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Nyvya IA Phone</title>
-  <!-- Icônes PWA -->
-  <link rel="apple-touch-icon" sizes="192x192" href="/icons/icon-192.png" />
-  <link rel="apple-touch-icon" sizes="512x512" href="/icons/icon-512.png" />
-  <meta name="theme-color" content="#FFFFFF" />
+  <meta name="theme-color" content="#eaf0ff" />
   <style>
-    body { font-family: system-ui, sans-serif; padding: 0; margin: 0; background: #f4f7fb;}
-    .container { max-width: 520px; margin: 24px auto; background: #fff; border-radius: 24px; box-shadow: 0 2px 20px #3b48fa0c; padding: 28px 18px 32px 18px; }
-    h1 { text-align: center; font-weight: 900; font-size: 2.1em; color: #3252C0; margin-top: 0; }
-    .menu-btn { 
-      display: block; width: 97%; margin: 12px auto; padding: 18px 0; font-size: 1.18em;
-      background: #e3e8fd; border: none; border-radius: 16px; color: #183B6C; font-weight: 600;
-      box-shadow: 0 1px 6px #8c8c8c10; transition: 0.12s; letter-spacing: 0.01em;
-    }
-    .menu-btn:hover { background: #b5c9fc; }
-    .section { margin: 32px 0 8px 0; }
-    .back-btn { background: #fff; color: #488; border: 1px solid #bdd; border-radius: 13px; padding: 8px 24px; margin-top: 30px; display: block; margin-left: auto; margin-right: auto;}
-    .zone { margin-top: 20px; }
-    .sousmenu-btn {
-      display: inline-block; margin: 10px 10px 10px 0; padding: 10px 24px;
-      background: #e0f3fc; border: none; border-radius: 13px; color: #255b84; font-size: 1em;
-      font-weight: 500; box-shadow: 0 1px 4px #0001; transition: 0.1s;
-    }
-    .sousmenu-btn:hover { background: #d2e5f2;}
-    .titre-section { color: #254c7c; margin-bottom: 8px; font-size: 1.14em;}
-    @media (max-width: 580px) { .container { border-radius: 0; box-shadow: none; } }
+    body { background: #f6f8fd; font-family: system-ui, sans-serif; margin:0; padding:0; }
+    .container { max-width: 480px; margin: 32px auto 0 auto; background: #fff; border-radius: 18px; box-shadow: 0 4px 24px #0001; padding: 26px 8px 30px 8px; }
+    .header { text-align: center; margin-bottom: 10px; }
+    .header h1 { font-size: 2.1em; margin: 0 0 5px 0; }
+    .header .slogan { color: #2a4795; font-weight: 400; font-size: 1.02em; margin-bottom: 14px;}
+    .menu-btn, .sousmenu-btn { width: 97%; display:block; margin: 8px auto; padding: 15px 0; font-size: 1.1em; border:none; border-radius: 18px; background:#eaf0ff; color:#173065; font-weight:600; box-shadow:0 2px 6px #bbb1; cursor:pointer; transition:0.12s;}
+    .menu-btn:hover, .sousmenu-btn:hover { background: #d1e2ff; }
+    .back-btn { margin: 17px auto 0 auto; background:#ecedf2; color:#233; border-radius:12px; font-size:1em; padding:10px 25px;}
+    .titre-section { font-size: 1.25em; font-weight: bold; color:#2a4795; margin: 10px 0 20px 0; text-align:center;}
+    .formzone { background: #f8faff; padding: 1em; border-radius: 15px; margin-bottom: 15px;}
+    input, textarea { font-size: 1em; padding: 5px 10px; border-radius: 8px; border: 1px solid #ccc; margin: 7px 0 0 0; width: 95%; }
+    textarea { min-height: 40px; }
+    label { font-weight: bold; }
+    .micro-btn { position:fixed; top:25px; right:18px; background:#eaf0ff; border:none; border-radius:50%; box-shadow:0 2px 8px #7772; width:48px; height:48px; font-size:1.7em; cursor:pointer; z-index:1100; transition: 0.12s;}
+    .micro-btn.listen { background:#ffd9d9; color:#a32020;}
+    .resultat { margin: 18px 0 0 0; font-size:1.07em;}
+    @media (max-width:500px){.container{padding:11px 1px 15px 1px;}}
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Nyvya IA Phone</h1>
-    <div id="main-menu">
-      <button class="menu-btn" onclick="menu('pack')">✨ Assistant personnalisé / Packs Waouh</button>
-      <button class="menu-btn" onclick="menu('espace')">👨‍👩‍👧‍👦 Espace spécialisé : Parents / Nounous / Crèches / Pro</button>
-      <button class="menu-btn" onclick="menu('traduction')">🌍 Traduction vocale bi-directionnelle</button>
-      <button class="menu-btn" onclick="menu('actus')">📰 Résumé actus (5min/10min) – toutes thématiques</button>
-      <button class="menu-btn" onclick="menu('histoire')">📖 Histoire IA sur-mesure</button>
-      <button class="menu-btn" onclick="menu('berceuse')">🎶 Berceuse IA personnalisée</button>
-      <button class="menu-btn" onclick="menu('jeu')">🧩 Jeux & Devinettes IA</button>
-      <button class="menu-btn" onclick="menu('blague')">😂 Blague sur mesure</button>
+  <!-- Micro bouton vocal universel -->
+  <button id="microBtn" class="micro-btn" title="Commande vocale" onclick="activerVocal()">
+    🎤
+  </button>
+  <div class="container" id="contenu">
+    <div class="header">
+      <h1>🌟 Nyvya IA</h1>
+      <div class="slogan">
+        L’assistant universel – Unique.<br>Personnalisé. Infini.<br>
+        <i>Le futur, c’est maintenant.</i>
+      </div>
     </div>
-    <div class="zone" id="zone"></div>
+    <div id="menuPrincipal">
+      <button class="menu-btn" onclick="menu('assistant')">✨ Pack WAOUH / Assistant universel</button>
+      <button class="menu-btn" onclick="menu('specialise')">👨‍👩‍👧‍👦 Espace spécialisé : Parents, Nounous, Crèches, Pro/Éducateurs, Enfants</button>
+      <button class="menu-btn" onclick="menu('traduction')">🌍 Traduction vocale instantanée / Bi-directionnelle</button>
+      <button class="menu-btn" onclick="menu('actus')">📰 Résumé actus / Actualité intelligente</button>
+      <button class="menu-btn" onclick="menu('histoire')">📖 Histoire IA personnalisée (enfant/adulte)</button>
+      <button class="menu-btn" onclick="menu('berceuse')">🎶 Berceuse personnalisée</button>
+      <button class="menu-btn" onclick="menu('jeu')">🧩 Jeux / Devinettes IA</button>
+      <button class="menu-btn" onclick="menu('blague')">😂 Blague IA sur-mesure</button>
+      <button class="menu-btn" onclick="menu('autres')">🪄 Autres outils / À venir</button>
+    </div>
+    <div id="zone"></div>
+    <div style="margin:28px 0 0 0;text-align:center;color:#8cb98f;font-size:1.03em;">
+      Nyvya IA Phone — Projet en évolution ✦<br>
+      <span style="font-size:.95em;color:#aac;">Unique, infini, toujours gratuit pour découvrir</span>
+    </div>
   </div>
-
   <script>
-    function menu(type) {
-      let html = "";
-      // Pack Waouh
-      if (type === "pack") {
-        html = `
-          <div class="section">
-            <div class="titre-section">Assistant IA personnalisé / Packs Effet Waouh</div>
-            <button class="sousmenu-btn" onclick="alert('Fonction à venir : Assistance ultra-personnalisée sur demande (audio/texte/visuel).')">Pack personnalisé</button>
-            <button class="sousmenu-btn" onclick="alert('Fonction à venir : Conseils instantanés, aide projet, recommandations, prévisions…')">Conseiller IA</button>
-            <button class="sousmenu-btn" onclick="alert('Fonction à venir : Astuces voyage, santé, achats, etc.')">Astuces IA</button>
-            <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>
-          </div>
-        `;
+    // --- Micro bouton vocal ---
+    let reconnaissance, ecouteActive = false;
+    function activerVocal() {
+      if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        alert("Reconnaissance vocale non supportée sur ce navigateur.");
+        return;
       }
-      // Espace spécialisé (Parents/Nounous/Crèches/Pro)
-      else if (type === "espace") {
-        html = `
-          <div class="section">
-            <div class="titre-section">Espace spécialisé</div>
-            <button class="sousmenu-btn" onclick="alert('Fonction à venir : Espace Parents')">Parents</button>
-            <button class="sousmenu-btn" onclick="alert('Fonction à venir : Espace Nounous')">Nounous</button>
-            <button class="sousmenu-btn" onclick="alert('Fonction à venir : Espace Crèches')">Crèches</button>
-            <button class="sousmenu-btn" onclick="alert('Fonction à venir : Espace Pro / Éducateurs')">Pro / Éducateur</button>
-            <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>
-          </div>
-        `;
-      }
-      // Traduction vocale bi-directionnelle
-      else if (type === "traduction") {
-        html = `
-          <div class="section">
-            <div class="titre-section">Traduction vocale bi-directionnelle (à venir)</div>
-            <p>À venir : Traduction instantanée, audio et texte, entre toutes les langues, sans limite.</p>
-            <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>
-          </div>
-        `;
-      }
-      // Résumé actus
-      else if (type === "actus") {
-        html = `
-          <div class="section">
-            <div class="titre-section">Résumé actus 5/10min – toutes thématiques</div>
-            <p>À venir : Résumés audio/texte ultra-personnalisés de toute l’actualité (sport, musique, politique, local…), générés sur demande.</p>
-            <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>
-          </div>
-        `;
-      }
-      // Histoire IA
-      else if (type === "histoire") {
-        html = `
-          <div class="section">
-            <div class="titre-section">Histoire IA sur-mesure</div>
-            <input style="width:90%;margin-bottom:8px;" placeholder="Prénom, âge, thèmes ou détails souhaités…" />
-            <button class="sousmenu-btn" onclick="alert('Fonction IA à venir : Génération d’histoires personnalisées (texte/audio/visuel)')">Générer une histoire IA</button>
-            <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>
-          </div>
-        `;
-      }
-      // Berceuse IA
-      else if (type === "berceuse") {
-        html = `
-          <div class="section">
-            <div class="titre-section">Berceuse IA personnalisée</div>
-            <input style="width:90%;margin-bottom:8px;" placeholder="Prénom, âge, ambiance, bruit de fond…" />
-            <button class="sousmenu-btn" onclick="alert('Fonction IA à venir : Génération de berceuses personnalisées (texte/audio)')">Générer une berceuse IA</button>
-            <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>
-          </div>
-        `;
-      }
-      // Jeux & Devinettes IA
-      else if (type === "jeu") {
-        html = `
-          <div class="section">
-            <div class="titre-section">Jeux / Devinettes IA</div>
-            <button class="sousmenu-btn" onclick="alert('Fonction IA à venir : Jeux, devinettes, quiz personnalisés')">Lancer un jeu IA</button>
-            <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>
-          </div>
-        `;
-      }
-      // Blague sur mesure
-      else if (type === "blague") {
-        html = `
-          <div class="section">
-            <div class="titre-section">Blague IA sur mesure</div>
-            <input style="width:90%;margin-bottom:8px;" placeholder="Âge, sujet, style, ambiance…" />
-            <button class="sousmenu-btn" onclick="alert('Fonction IA à venir : Génération de blagues personnalisées')">Générer une blague IA</button>
-            <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>
-          </div>
-        `;
-      }
-      document.getElementById('zone').innerHTML = html;
-      document.getElementById('main-menu').style.display = "none";
+      if (ecouteActive) { reconnaissance.stop(); return; }
+      document.getElementById('microBtn').classList.add('listen');
+      ecouteActive = true;
+      reconnaissance = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+      reconnaissance.lang = 'fr-FR';
+      reconnaissance.interimResults = false;
+      reconnaissance.maxAlternatives = 1;
+      reconnaissance.onresult = function(event) {
+        let texte = event.results[0][0].transcript.trim().toLowerCase();
+        document.getElementById('microBtn').classList.remove('listen');
+        ecouteActive = false;
+        routerVocal(texte);
+      };
+      reconnaissance.onend = function() {
+        document.getElementById('microBtn').classList.remove('listen');
+        ecouteActive = false;
+      };
+      reconnaissance.start();
+    }
+    function routerVocal(txt) {
+      // Tu pourras personnaliser ça : ici, quelques exemples pour déclencher les menus principaux
+      if (txt.includes("assistant")) menu('assistant');
+      else if (txt.includes("parent")) menu('specialise','parent');
+      else if (txt.includes("nounou")) menu('specialise','nounou');
+      else if (txt.includes("crèche")) menu('specialise','creche');
+      else if (txt.includes("éducateur") || txt.includes("pro")) menu('specialise','pro');
+      else if (txt.includes("enfant")) menu('specialise','enfant');
+      else if (txt.includes("berceuse")) menu('berceuse');
+      else if (txt.includes("histoire")) menu('histoire');
+      else if (txt.includes("blague")) menu('blague');
+      else if (txt.includes("jeu") || txt.includes("devinette")) menu('jeu');
+      else if (txt.includes("actu")) menu('actus');
+      else if (txt.includes("traduction")) menu('traduction');
+      else alert("Commande vocale : \""+txt+"\" non reconnue pour l’instant.");
     }
 
     function retourAccueil() {
       document.getElementById('zone').innerHTML = "";
-      document.getElementById('main-menu').style.display = "block";
+      document.getElementById('menuPrincipal').style.display = "";
+      window.scrollTo(0,0);
+    }
+
+    function menu(type, souszone) {
+      document.getElementById('zone').innerHTML = "";
+      document.getElementById('menuPrincipal').style.display = "none";
+      let html = "";
+      // Pack WAOUH
+      if (type === "assistant") {
+        html = `<div class="formzone"><div class="titre-section">✨ Assistant universel WAOUH</div>
+        <p>Pose n’importe quelle question, besoin, problème, projet, conseil pro ou perso, idée de génie…<br>
+        <b>Tape ou dicte ta demande :</b></p>
+        <textarea id="inputAssistant" placeholder="ex: J’ai besoin d’un plan détaillé pour organiser un voyage en 2025 avec petit budget, enfant de 7 ans, etc."></textarea>
+        <button class="sousmenu-btn" onclick="alerteFonction()">Lancer l’assistant IA</button>
+        </div><button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>`;
+      }
+      // Zone spécialisée
+      else if (type === "specialise") {
+        html = `<div class="formzone">
+          <div class="titre-section">Choisis ta zone spécialisée :</div>
+          <button class="sousmenu-btn" onclick="menu('specialise','parent')">👨‍👩‍👧‍👦 Parents</button>
+          <button class="sousmenu-btn" onclick="menu('specialise','nounou')">🧑‍🍼 Nounous</button>
+          <button class="sousmenu-btn" onclick="menu('specialise','creche')">🏢 Crèches</button>
+          <button class="sousmenu-btn" onclick="menu('specialise','pro')">💼 Pro / Éducateurs</button>
+          <button class="sousmenu-btn" onclick="menu('specialise','enfant')">🧒 Enfants</button>
+        </div>
+        <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>
+        <div id="zoneSpecialise"></div>`;
+        // Sous-zones : ici on peut afficher plus bas après le clic
+        if (souszone) {
+          html += `<div class="resultat" style="margin-top:18px;color:#2a4795">Espace ${souszone.charAt(0).toUpperCase()+souszone.slice(1)}</div>`;
+        }
+      }
+      // Traduction bi-directionnelle
+      else if (type === "traduction") {
+        html = `<div class="formzone"><div class="titre-section">🌍 Traduction vocale instantanée (bi-directionnelle)</div>
+        <p>Bientôt : Traduction vocale en temps réel, dans les deux sens, pour dialoguer sans effort avec toute nationalité. <br>(Tu pourras dicter, écouter, ou écrire)</p>
+        <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button></div>`;
+      }
+      // Actus en résumé
+      else if (type === "actus") {
+        html = `<div class="formzone"><div class="titre-section">📰 Résumé actus / Actu intelligente</div>
+        <p>En un clic, obtiens des résumés personnalisés (5/10min) de toutes les actus du monde, sport, météo, buzz, ce qui t’intéresse…<br>(Démo, vraie IA à venir)</p>
+        <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button></div>`;
+      }
+      // Histoire IA
+      else if (type === "histoire") {
+        html = `<div class="formzone">
+        <div class="titre-section">📖 Histoire IA personnalisée</div>
+        <label>À propos de qui ? (Prénom, âge, thème…)</label>
+        <input id="cibleHistoire" placeholder="ex: Wharys, 7 ans, adore la pluie, ambiance joyeuse" /><br>
+        <button class="sousmenu-btn" onclick="alerteFonction()">Générer l’histoire IA</button>
+        </div>
+        <div id="resultHistoire"></div>
+        <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>`;
+      }
+      // Berceuse IA
+      else if (type === "berceuse") {
+        html = `<div class="formzone">
+        <div class="titre-section">🎶 Berceuse IA personnalisée</div>
+        <label>À propos de qui ? (Prénom, âge, humeur, bruit de fond…)</label>
+        <input id="cibleBerceuse" placeholder="ex: Wharys, 2 ans, pleure, bruit de pluie, style doux" /><br>
+        <button class="sousmenu-btn" onclick="alerteFonction()">Générer la berceuse IA</button>
+        </div>
+        <div id="resultBerceuse"></div>
+        <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>`;
+      }
+      // Jeux/Devinette IA : 2 boutons
+      else if (type === "jeu") {
+        html = `<div class="formzone">
+        <div class="titre-section">🧩 Jeux / Devinettes IA</div>
+        <button class="sousmenu-btn" onclick="alerteFonction()">Lancer un jeu IA</button>
+        <button class="sousmenu-btn" onclick="alerteFonction()">Lancer une devinette IA</button>
+        </div>
+        <div id="resultJeu"></div>
+        <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>`;
+      }
+      // Blague sur-mesure
+      else if (type === "blague") {
+        html = `<div class="formzone">
+        <div class="titre-section">😂 Blague IA sur-mesure</div>
+        <label>Type, sujet, prénom, style :</label>
+        <input id="cibleBlague" placeholder="ex: Blague pour adulte, style absurde, prénom Wharys" /><br>
+        <button class="sousmenu-btn" onclick="alerteFonction()">Générer la blague IA</button>
+        </div>
+        <div id="resultBlague"></div>
+        <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button>`;
+      }
+      // Autres outils
+      else if (type === "autres") {
+        html = `<div class="formzone"><div class="titre-section">🪄 Autres outils IA (à venir)</div>
+        <p>Bientôt : outils créatifs, image, vidéo, éducation, coaching, business, etc.</p>
+        <button class="back-btn" onclick="retourAccueil()">⬅️ Retour</button></div>`;
+      }
+      document.getElementById('zone').innerHTML = html;
+      window.scrollTo(0, 0);
+    }
+
+    function alerteFonction() {
+      alert("Fonction IA à venir ! Cette démo affiche l’interface complète mais les IA avancées sont bientôt intégrées (audio, vocal, résumé, traduction temps réel, etc.)");
     }
   </script>
 </body>
