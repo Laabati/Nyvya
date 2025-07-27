@@ -4,114 +4,155 @@
   <meta charset="UTF-8" />
   <title>NYVYA PHONE AI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Fonts premium -->
+  <!-- Fonts stylés : Playfair Display (premium titre), Montserrat (moderne corps) -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
   <style>
+    :root {
+      --gold: #b89460;
+      --petrol: #3d5a67;
+      --cream: #f7f3ef;
+    }
     body {
       font-family: 'Montserrat', Arial, sans-serif;
-      background: #f7f3ef;
+      background: var(--cream);
       margin: 0;
       min-height: 100vh;
     }
     .header {
       text-align: center;
-      margin-top: 36px;
-      color: #b89460;
+      margin-top: 38px;
+      color: var(--gold);
       font-family: 'Playfair Display', serif;
       font-weight: 900;
-      font-size: 2.45em;
-      letter-spacing: 2.2px;
+      font-size: 2.3em;
+      letter-spacing: 2.3px;
       text-transform: uppercase;
-      font-variation-settings: "wght" 900;
-      text-shadow: 0 3px 13px #e7d2ae22;
+      margin-bottom: 4px;
     }
     .logo-box {
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 48px 0 0px 0;
+      margin: 35px 0 14px 0;
     }
     .logo-img {
-      width: 170px;
-      height: 170px;
+      width: 180px;
+      height: 180px;
       object-fit: contain;
-      border-radius: 36px;
-      background: none;
-      box-shadow: 0 8px 38px #b8946040;
+      border-radius: 40px;
+      background: var(--petrol);
+      box-shadow: 0 8px 38px #b8946045;
       border: 0;
       display: block;
-      background-color: #254c5c; /* bleu pétrole clair */
       padding: 0;
     }
+    /* --- CARTE BIENVENUE --- */
     .main-card {
-      background: #254c5c; /* bleu pétrole clair */
-      color: #b89460;
-      border-radius: 25px;
+      background: var(--petrol);
+      color: var(--gold);
+      border-radius: 28px;
       box-shadow: 0 4px 22px #0002;
-      padding: 52px 15px 36px 15px;
-      max-width: 480px;
-      margin: 58px auto 32px auto; /* bien descendre la case */
+      padding: 54px 18px 36px 18px;
+      max-width: 550px;
+      margin: 0 auto 37px auto;
       text-align: center;
+      margin-top: 60px;
     }
     .main-title {
       font-family: 'Playfair Display', serif;
-      font-size: 1.44em;
+      font-size: 1.39em;
       font-weight: 900;
       text-transform: uppercase;
-      color: #b89460;
-      margin-bottom: 18px;
-      letter-spacing: 1.1px;
+      color: var(--gold);
+      margin-bottom: 19px;
+      letter-spacing: 1.2px;
     }
     .subtitle {
-      color: #b89460;
-      font-size: 1.18em;
+      color: var(--gold);
+      font-size: 1.16em;
       font-weight: 700;
-      margin-bottom: 18px;
-      font-family: 'Playfair Display', serif;
-      letter-spacing: 1px;
-      text-align: center;
+      margin-bottom: 23px;
     }
     .menu-btn {
-      width: 48%;
-      margin: 10px 1%;
-      background: #f7f3ef;
+      width: 47%;
+      margin: 12px 2%;
+      background: var(--cream);
       border: none;
-      border-radius: 13px;
-      color: #b89460;
+      border-radius: 16px;
+      color: var(--gold);
       font-weight: 700;
-      font-size: 1.18em;
-      padding: 1.15em 0;
+      font-size: 1.15em;
+      padding: 1.11em 0.2em;
       transition: background 0.14s;
       box-shadow: 0 2px 8px #0001;
       cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
     }
     .menu-btn:hover {
-      background: #ece1d0;
+      background: #efe5d4;
       color: #a18341;
     }
     .back-btn {
-      background: #fff;
-      color: #b89460;
+      background: var(--cream);
+      color: var(--gold);
       margin-top: 18px;
-      font-weight: 600;
-      border: 2px solid #b89460;
+      font-weight: 700;
+      border: 2px solid var(--gold);
     }
-    /* Responsive */
+    /* --- FONCTIONNALITÉS MENU --- */
+    #menu-principal {
+      background: var(--petrol);
+      border-radius: 28px;
+      max-width: 550px;
+      margin: 50px auto 38px auto;
+      box-shadow: 0 4px 22px #0002;
+      padding: 34px 0 38px 0;
+    }
+    .main-title.center {
+      margin-bottom: 14px;
+    }
+    .fonction-btn {
+      width: 92%;
+      margin: 17px auto 0 auto;
+      background: var(--cream);
+      border: none;
+      border-radius: 18px;
+      color: var(--gold);
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 1.14em;
+      padding: 1.23em 0.6em;
+      transition: background 0.14s;
+      box-shadow: 0 2px 8px #0001;
+      display: block;
+      text-align: left;
+      text-align: center;
+    }
+    .fonction-btn:hover {
+      background: #f0e4d5;
+      color: #a18341;
+    }
+    /* --- Responsive --- */
     @media (max-width: 540px) {
       .header { font-size: 1.18em; }
-      .logo-img { width: 105px; height: 105px; }
-      .main-card { padding: 23px 2vw 19px 2vw; }
+      .logo-img { width: 108px; height: 108px; }
+      .main-card { padding: 26px 2vw 16px 2vw; margin-top: 35px;}
+      #menu-principal { padding: 22px 0 30px 0; margin: 34px auto 20px auto;}
+      .fonction-btn { padding: 0.9em 0.2em; font-size: 0.96em;}
     }
     /* Section IA personnalisée et formulaires */
     .form-section {
-      margin: 1.1em 0 0.2em 0;
-      color: #b89460;
+      margin: 1.2em 0 0.3em 0;
+      color: var(--gold);
     }
-    label { font-weight: 600; color: #b89460; }
+    label { font-weight: 700; color: var(--gold);}
     input, textarea, select {
-      padding: 8px 13px;
-      border-radius: 9px;
+      padding: 9px 13px;
+      border-radius: 10px;
       border: 1px solid #c5d7ef;
       width: 97%;
       font-size: 1em;
@@ -124,7 +165,7 @@
       border-radius: 13px;
       margin: 14px 0;
       padding: 1em 1em;
-      font-size: 1.08em;
+      font-size: 1.09em;
       color: #253344;
     }
     .center { text-align: center; }
@@ -140,24 +181,24 @@
   <div class="main-card" id="main-card">
     <div id="accueil">
       <div class="main-title">BIENVENUE SUR NYVYA AI</div>
-      <div class="subtitle">Veux-tu utiliser la <b style="color:#b89460;">commande vocale</b> ou <b style="color:#b89460;">écrite</b>&nbsp;?</div>
+      <div class="subtitle">Veux-tu utiliser la commande vocale ou écrite ?</div>
       <div style="display:flex;gap:16px;justify-content:center;">
-        <button class="menu-btn" style="width:48%;" onclick="setMode('vocal')">🎤 Mode vocal</button>
-        <button class="menu-btn" style="width:48%;" onclick="setMode('ecrit')">⌨️ Mode écrit</button>
+        <button class="menu-btn" onclick="setMode('vocal')">🎤 Mode vocal</button>
+        <button class="menu-btn" onclick="setMode('ecrit')">⌨️ Mode écrit</button>
       </div>
     </div>
     <!-- MENU PRINCIPAL -->
     <div id="menu-principal" style="display:none;">
-      <div class="main-title center" style="margin-bottom:8px;">CHOISIS UNE FONCTIONNALITÉ&nbsp;:</div>
-      <button class="menu-btn" onclick="ouvrirFonction('waouh')">✨ Assistant personnalisé / Packs Waouh</button>
-      <button class="menu-btn" onclick="ouvrirFonction('special')">👥 Espace spécialisé : Parents, Nounous, Crèches, Enfants, Éducateur</button>
-      <button class="menu-btn" onclick="ouvrirFonction('traduction')">🌍 Traduction vocale bi-directionnelle</button>
-      <button class="menu-btn" onclick="ouvrirFonction('actus')">📰 Résumé Actus 5-10min (tout sujet, tout pays)</button>
-      <button class="menu-btn" onclick="ouvrirFonction('histoire')">📖 Histoire IA ultra-personnalisée</button>
-      <button class="menu-btn" onclick="ouvrirFonction('berceuse')">🎶 Berceuse IA personnalisée</button>
-      <button class="menu-btn" onclick="ouvrirFonction('jeu')">🧩 Jeu / Devinette IA</button>
-      <button class="menu-btn" onclick="ouvrirFonction('blague')">😂 Blague sur mesure IA</button>
-      <button class="menu-btn back-btn" onclick="retourAccueil()">⏪ Retour mode</button>
+      <div class="main-title center" style="margin-bottom:16px;">CHOISIS UNE FONCTIONNALITÉ :</div>
+      <button class="fonction-btn" onclick="ouvrirFonction('waouh')">✨ Assistant personnalisé / Packs Waouh</button>
+      <button class="fonction-btn" onclick="ouvrirFonction('special')">👥 Espace spécialisé : Parents, Nounous, Crèches, Enfants, Éducateur</button>
+      <button class="fonction-btn" onclick="ouvrirFonction('traduction')">🌍 Traduction vocale bi-directionnelle</button>
+      <button class="fonction-btn" onclick="ouvrirFonction('actus')">📰 Résumé Actus 5-10min (tout sujet, tout pays)</button>
+      <button class="fonction-btn" onclick="ouvrirFonction('histoire')">📖 Histoire IA ultra-personnalisée</button>
+      <button class="fonction-btn" onclick="ouvrirFonction('berceuse')">🎶 Berceuse IA personnalisée</button>
+      <button class="fonction-btn" onclick="ouvrirFonction('jeu')">🧩 Jeu / Devinette IA</button>
+      <button class="fonction-btn" onclick="ouvrirFonction('blague')">😂 Blague sur mesure IA</button>
+      <button class="menu-btn back-btn" onclick="retourAccueil()" style="width:94%;">⏪ Retour mode</button>
     </div>
     <!-- ZONE FONCTIONNELLE (affichage dynamique) -->
     <div id="zone"></div>
