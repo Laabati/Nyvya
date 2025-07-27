@@ -5,11 +5,26 @@
   <title>NYVYA IA Phone</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body { font-family: 'Segoe UI', Arial, sans-serif; background: #16202a; margin: 0; }
-    .header { text-align: center; margin-top: 2em; color: #009b7e; font-size: 2.2em; font-weight: 700; letter-spacing: 2px; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #202b32; /* bleu nuit profond */
+      margin: 0;
+    }
+    .header {
+      text-align: center;
+      margin-top: 1.5em;
+      color: #009b7e;
+      font-size: 2.2em;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
     .card {
-      background: #fff; border-radius: 20px; margin: 2em auto 1em auto;
-      box-shadow: 0 2px 10px #0001; padding: 2em 1.2em; max-width: 410px;
+      background: #fff;
+      border-radius: 20px;
+      margin: 2em auto 1em auto;
+      box-shadow: 0 2px 10px #0001;
+      padding: 2em 1.2em;
+      max-width: 410px;
     }
     .title { font-size: 1.5em; margin-bottom: 8px; color: #0b355a; font-weight: 700;}
     .subtitle {font-size:1.1em;color:#294564;margin-bottom:18px;}
@@ -33,29 +48,25 @@
       .card { padding: 1.1em 2vw; }
       .header { font-size: 1.15em;}
     }
+    /* Logo centré en haut */
+    .logo-top {
+      display: flex;
+      justify-content: center;
+      margin-top: 38px;
+      margin-bottom: 8px;
+    }
+    .logo-top img {
+      max-width: 140px;
+      height: auto;
+      border-radius: 18px;
+      box-shadow: 0 2px 12px #0003;
+    }
   </style>
 </head>
 <body>
-
-  <!-- Logo NYVYA IA (SVG custom) -->
-  <div style="display:flex; flex-direction:column; align-items:center; margin-top:22px; margin-bottom:2px;">
-    <svg width="120" height="120" viewBox="0 0 200 200" fill="none">
-      <!-- Cercle extérieur -->
-      <circle cx="100" cy="100" r="92" stroke="#C7A26D" stroke-width="7"/>
-      <!-- Hémisphère gauche (cerveau stylisé) -->
-      <path d="M55 60 Q50 80 75 92 Q55 110 85 110" fill="none" stroke="#C7A26D" stroke-width="5"/>
-      <path d="M55 100 Q62 110 77 107" fill="none" stroke="#C7A26D" stroke-width="4"/>
-      <path d="M60 85 Q67 98 80 93" fill="none" stroke="#C7A26D" stroke-width="4"/>
-      <path d="M70 65 Q76 73 89 77" fill="none" stroke="#C7A26D" stroke-width="4"/>
-      <!-- Ligne centrale séparation cerveau/visage -->
-      <path d="M100 30 L100 170" stroke="#C7A26D" stroke-width="6"/>
-      <!-- Profil visage droit (traits ouverts, menton et front ouverts) -->
-      <path d="M100 55 Q145 67 130 100 Q147 116 110 150" fill="none" stroke="#C7A26D" stroke-width="5"/>
-      <!-- Front jusqu'à nez (haut non collé) -->
-      <path d="M100 60 Q140 55 120 100" fill="none" stroke="#C7A26D" stroke-width="3"/>
-      <!-- "NYVYA" sur le visage en petit, intégré -->
-      <text x="120" y="120" font-family="Segoe UI, Arial, sans-serif" font-size="18" fill="#C7A26D" letter-spacing="2" style="font-weight:bold;">NYVYA</text>
-    </svg>
+  <!-- LOGO NYVYA CENTRÉ EN HAUT -->
+  <div class="logo-top">
+    <img src="Logo nyvya.PNG" alt="Logo NYVYA">
   </div>
 
   <div class="header">NYVYA IA Phone</div>
