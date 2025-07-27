@@ -2,141 +2,194 @@
 <html lang="fr">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>NYVYA IA Phone</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
-    body { font-family: system-ui, sans-serif; background: #f7f8fb; margin: 0; padding: 0;}
-    .container { max-width: 480px; margin: auto; padding: 10px;}
-    .box {
-      background: #fff;
-      border-radius: 18px;
-      box-shadow: 0 2px 16px #0001;
-      padding: 22px 16px 16px 16px;
-      margin: 20px 0 14px 0;
-      text-align: center;
+    body { font-family: 'Segoe UI', Arial, sans-serif; background: #f7f8fa; margin: 0; }
+    .header { text-align: center; margin-top: 2em; color: #009b7e; font-size: 2.2em; font-weight: 700; letter-spacing: 2px; }
+    .card {
+      background: #fff; border-radius: 20px; margin: 2em auto 1em auto;
+      box-shadow: 0 2px 10px #0001; padding: 2em 1.2em; max-width: 410px;
     }
-    h1 { color: #22b291; font-size: 2em; margin-bottom: 14px;}
-    h2 { font-size: 1.3em; margin: 0 0 12px 0;}
-    .bigbtn {
-      font-size: 1.12em;
-      border-radius: 16px;
-      border: none;
-      background: #e9effd;
-      color: #234;
-      padding: 17px 0;
-      margin: 12px 0 0 0;
-      width: 100%;
-      box-shadow: 1px 1px 6px #0001;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer;
-      font-weight: 500;
-      transition: background .2s;
+    .title { font-size: 1.5em; margin-bottom: 8px; color: #0b355a; font-weight: 700;}
+    .subtitle {font-size:1.1em;color:#294564;margin-bottom:18px;}
+    .menu-btn {
+      display: block; width: 100%; padding: 1em; margin: 12px 0;
+      border: none; border-radius: 13px; font-size: 1.17em; background: #e9f1fb; color: #213a51; font-weight: 600; cursor: pointer;
+      transition: background 0.13s;
     }
-    .bigbtn:hover { background: #c8d6fa;}
-    .active { background: #22b291; color: #fff;}
-    .choice-btn {
-      width: 48%; display: inline-block; margin: 8px 1%; font-size: 1.08em;
-      padding: 20px 0; border-radius: 15px; border: none; cursor: pointer;
-      background: #e8eefe; color: #155;
-      font-weight: 500; transition: background .2s, color .2s;
+    .menu-btn:hover { background: #c7e5fa; }
+    .back-btn { background: #ffe5d1; color: #b95900; font-weight: 500; margin-top: 20px; }
+    .form-section { margin: 1.1em 0 0.2em 0; }
+    label { font-weight: 600; color: #1e374d; }
+    input, textarea, select {
+      padding: 8px 13px; border-radius: 9px; border: 1px solid #c5d7ef; width: 97%; font-size: 1em; margin-top: 6px;
+      margin-bottom: 10px;
     }
-    .choice-btn.active, .choice-btn.selected { background: #22b291; color: #fff;}
-    .row {display: flex; flex-wrap: wrap; justify-content: space-between;}
-    .hidden {display:none;}
+    textarea { min-height: 38px; }
+    .result-zone { background: #f2f8fd; border-radius: 13px; margin: 14px 0; padding: 1em 1em; font-size: 1.1em; }
+    .center { text-align: center; }
+    @media (max-width:500px) {
+      .card { padding: 1.1em 2vw; }
+      .header { font-size: 1.15em;}
+    }
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1 id="titre">NYVYA IA Phone</h1>
-    <div id="zone">
-      <!-- Le contenu JS sera injecté ici -->
+  <div class="header">NYVYA IA Phone</div>
+  <div class="card" id="main-card">
+
+    <!-- Page d'accueil avec choix vocal/écrit -->
+    <div id="accueil">
+      <div class="title">Bienvenue sur <span style="color:#0773c5;">NYVYA IA</span> !</div>
+      <div class="subtitle">Veux-tu utiliser la <b>commande vocale</b> ou <b>écrite</b> ?</div>
+      <div style="display:flex;gap:14px;justify-content:center;">
+        <button class="menu-btn" style="width:48%;" onclick="setMode('vocal')">🎤 Mode vocal</button>
+        <button class="menu-btn" style="width:48%;" onclick="setMode('ecrit')">⌨️ Mode écrit</button>
+      </div>
     </div>
+
+    <!-- Menu principal -->
+    <div id="menu-principal" style="display:none;">
+      <div class="title center" style="margin-bottom:6px;">Choisis une fonctionnalité :</div>
+      <button class="menu-btn" onclick="ouvrirFonction('waouh')">✨ Assistant personnalisé / Packs Waouh</button>
+      <button class="menu-btn" onclick="ouvrirFonction('special')">👥 Espace spécialisé : Parents, Nounous, Crèches, Enfants, Pro</button>
+      <button class="menu-btn" onclick="ouvrirFonction('traduction')">🌍 Traduction vocale bi-directionnelle</button>
+      <button class="menu-btn" onclick="ouvrirFonction('actus')">📰 Résumé Actus 5-10min (tout sujet, tout pays)</button>
+      <button class="menu-btn" onclick="ouvrirFonction('histoire')">📖 Histoire IA ultra-personnalisée</button>
+      <button class="menu-btn" onclick="ouvrirFonction('berceuse')">🎶 Berceuse IA personnalisée</button>
+      <button class="menu-btn" onclick="ouvrirFonction('jeu')">🧩 Jeu / Devinette IA</button>
+      <button class="menu-btn" onclick="ouvrirFonction('blague')">😂 Blague sur mesure IA</button>
+      <button class="menu-btn back-btn" onclick="retourAccueil()">⏪ Retour mode</button>
+    </div>
+
+    <!-- Zone dynamique pour affichage des fonctions -->
+    <div id="zone"></div>
+
   </div>
-
   <script>
-    // Gestion du mode et des états
+    // Gestion du mode (vocal ou écrit)
     let mode = "";
-    let synth = window.speechSynthesis;
-
-    // Lancement de l'accueil
-    accueil();
-
-    function accueil() {
-      document.getElementById('zone').innerHTML = `
-        <div class="box">
-          <h2>Bienvenue sur <span style="color:#226be1">NYVYA IA</span> !</h2>
-          <div style="margin-bottom:14px; font-size:1.09em;">
-            Veux-tu utiliser la <b>commande vocale</b> ou <b>écrite</b> ?
-          </div>
-          <button class="choice-btn" onclick="choixMode('vocal')" id="btnVocal">🎤 Mode vocal</button>
-          <button class="choice-btn" onclick="choixMode('ecrit')" id="btnEcrit">⌨️ Mode écrit</button>
-        </div>
-      `;
-      // Lecture automatique à l'entrée
-      parler("Bienvenue sur NYVYA IA ! Veux-tu utiliser la commande vocale ou écrite ?");
+    function setMode(m) {
+      mode = m;
+      document.getElementById("accueil").style.display = "none";
+      document.getElementById("menu-principal").style.display = "";
+      document.getElementById("zone").innerHTML = ""; // reset
     }
-
-    // Gestion du choix du mode
-    function choixMode(sel) {
-      mode = sel;
-      if (mode==="vocal") {
-        document.getElementById("btnVocal").classList.add("selected");
-        parler("Mode vocal activé. Voici les fonctionnalités. Dis simplement le nom pour choisir.");
-      } else {
-        document.getElementById("btnEcrit").classList.add("selected");
-        parler("Mode écrit activé. Clique sur une fonctionnalité.");
-      }
-      setTimeout(menuPrincipal, 1100);
+    function retourAccueil() {
+      document.getElementById("menu-principal").style.display = "none";
+      document.getElementById("accueil").style.display = "";
+      document.getElementById("zone").innerHTML = "";
     }
-
-    // MENU PRINCIPAL
-    function menuPrincipal() {
-      document.getElementById('zone').innerHTML = `
-        <div class="box" style="margin-top:10px;">
-          <div style="font-size:1.25em; font-weight:600; margin-bottom:14px;">Choisis une fonctionnalité :</div>
-          <button class="bigbtn" onclick="ouvrirFonction('waouh')">✨ Assistant personnalisé / Packs Waouh</button>
-          <button class="bigbtn" onclick="ouvrirFonction('specialise')">👥 Espace spécialisé : Parents, Nounous, Crèches, Enfants, Pro</button>
-          <button class="bigbtn" onclick="ouvrirFonction('traduction')">🌍 Traduction vocale bi-directionnelle</button>
-          <button class="bigbtn" onclick="ouvrirFonction('actus')">📰 Résumé Actus 5-10min (tout sujet, tout pays)</button>
-          <button class="bigbtn" onclick="ouvrirFonction('histoire')">📖 Histoire IA ultra-personnalisée</button>
-          <button class="bigbtn" onclick="ouvrirFonction('berceuse')">🎶 Berceuse IA personnalisée</button>
-          <button class="bigbtn" onclick="ouvrirFonction('jeu')">🧩 Jeu / Devinette IA</button>
-          <button class="bigbtn" onclick="ouvrirFonction('blague')">😂 Blague sur mesure IA</button>
-          <button class="choice-btn" style="margin-top:22px;background:#ffefe8;color:#ca7000" onclick="accueil()">⏮️ Retour mode</button>
-        </div>
-      `;
-      if (mode==="vocal") {
-        setTimeout(()=>parler("Voici toutes les fonctionnalités. Dis par exemple : histoire IA, résumé actus, traduction, assistant personnalisé, jeu, ou blague."), 600);
-      }
+    function retourMenu() {
+      document.getElementById("menu-principal").style.display = "";
+      document.getElementById("zone").innerHTML = "";
+      window.scrollTo(0,0);
     }
-
-    // Placeholders pour chaque fonctionnalité (à brancher ensuite)
+    // Fonction de navigation vers chaque outil
     function ouvrirFonction(type) {
-      let nom = "";
-      switch(type) {
-        case "waouh": nom="Assistant personnalisé à intégrer ici."; break;
-        case "specialise": nom="Espace spécialisé à intégrer ici."; break;
-        case "traduction": nom="Traduction à intégrer ici."; break;
-        case "actus": nom="Résumé actus à intégrer ici."; break;
-        case "histoire": nom="Histoire IA à intégrer ici."; break;
-        case "berceuse": nom="Berceuse IA à intégrer ici."; break;
-        case "jeu": nom="Jeu IA à intégrer ici."; break;
-        case "blague": nom="Blague IA à intégrer ici."; break;
+      let html = "";
+      if (type === "waouh") {
+        html = `
+          <div class="form-section">
+            <div class="title" style="font-size:1.23em;">✨ Assistant personnalisé / Packs Waouh</div>
+            <label>Décris ton besoin, ta situation, ton problème ou ton objectif précis :</label>
+            <textarea id="waouhDemande" placeholder="Exemple : Je prépare un voyage, j'ai un souci pro, j'ai besoin d'un conseil sur la santé, etc."></textarea>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Obtenir la solution personnalisée</button>
+            <div class="result-zone" id="waouhResult"></div>
+            <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
+          </div>
+        `;
+      } else if (type === "special") {
+        html = `
+          <div class="form-section">
+            <div class="title" style="font-size:1.13em;">👥 Espace spécialisé : Parents, Nounous, Crèches, Enfants, Pro</div>
+            <label>Choisis ta zone :</label>
+            <select id="zoneSpec">
+              <option>Parents</option>
+              <option>Nounous</option>
+              <option>Crèches</option>
+              <option>Enfants</option>
+              <option>Pro / Éducateurs</option>
+            </select>
+            <textarea id="specialDemande" placeholder="Décris ta question, besoin, ou demande (éducation, suivi enfant, problème concret, etc.)"></textarea>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Obtenir l'aide personnalisée</button>
+            <div class="result-zone" id="specialResult"></div>
+            <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
+          </div>
+        `;
+      } else if (type === "traduction") {
+        html = `
+          <div class="form-section">
+            <div class="title" style="font-size:1.13em;">🌍 Traduction vocale bi-directionnelle</div>
+            <label>De quelle langue à quelle langue ?</label>
+            <input id="tradLangues" placeholder="Ex : français vers arabe" />
+            <label>Texte ou message à traduire :</label>
+            <textarea id="tradTexte" placeholder="Écris ou dicte ici…"></textarea>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Traduire</button>
+            <div class="result-zone" id="traductionResult"></div>
+            <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
+          </div>
+        `;
+      } else if (type === "actus") {
+        html = `
+          <div class="form-section">
+            <div class="title" style="font-size:1.13em;">📰 Résumé Actus 5–10min</div>
+            <label>Quel sujet, pays, thème ou actualité précise ?</label>
+            <input id="actusSujet" placeholder="Ex : météo France, foot, économie, info monde, etc."/>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Obtenir le résumé</button>
+            <div class="result-zone" id="actusResult"></div>
+            <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
+          </div>
+        `;
+      } else if (type === "histoire") {
+        html = `
+          <div class="form-section">
+            <div class="title">📖 Histoire IA ultra-personnalisée</div>
+            <label>Pour qui, quel âge, thème, style ou ambiance ?</label>
+            <input id="histoireCible" placeholder="Ex : Sara, 7 ans, adore les animaux, ton drôle…" />
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Générer l'histoire</button>
+            <div class="result-zone" id="histoireResult"></div>
+            <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
+          </div>
+        `;
+      } else if (type === "berceuse") {
+        html = `
+          <div class="form-section">
+            <div class="title">🎶 Berceuse IA personnalisée</div>
+            <label>Pour qui, âge, humeur, bruit de fond, style… ?</label>
+            <input id="berceuseCible" placeholder="Ex : Wharys, 2 ans, ambiance pluie, triste…" />
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Générer la berceuse</button>
+            <div class="result-zone" id="berceuseResult"></div>
+            <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
+          </div>
+        `;
+      } else if (type === "jeu") {
+        html = `
+          <div class="form-section">
+            <div class="title">🧩 Jeu / Devinette IA</div>
+            <label>Type de jeu ou devinette (facile, quiz, enfant, etc.) :</label>
+            <input id="jeuType" placeholder="Ex : Devinette pour enfant de 6 ans" />
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Lancer le jeu / devinette</button>
+            <div class="result-zone" id="jeuResult"></div>
+            <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
+          </div>
+        `;
+      } else if (type === "blague") {
+        html = `
+          <div class="form-section">
+            <div class="title">😂 Blague sur mesure IA</div>
+            <label>Type, sujet, public, prénom, style… :</label>
+            <input id="blagueCible" placeholder="Ex : Blague courte pour enfant sur le foot" />
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Générer la blague</button>
+            <div class="result-zone" id="blagueResult"></div>
+            <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
+          </div>
+        `;
       }
-      alert(nom);
-      if (mode==="vocal") parler(nom);
-    }
-
-    // Fonction de synthèse vocale native navigateur (simple, gratuite)
-    function parler(texte) {
-      try {
-        if (!window.speechSynthesis) return;
-        window.speechSynthesis.cancel(); // Stop si une voix tourne déjà
-        const utter = new SpeechSynthesisUtterance(texte);
-        utter.lang = "fr-FR";
-        utter.rate = 1.05;
-        window.speechSynthesis.speak(utter);
-      } catch (e) { /* Rien */ }
+      document.getElementById("menu-principal").style.display = "none";
+      document.getElementById("zone").innerHTML = html;
+      window.scrollTo(0,0);
     }
   </script>
 </body>
