@@ -1,31 +1,41 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8" /> 
   <!-- PWA & icônes -->
   <link rel="manifest" href="/manifest.webmanifest" />
   <meta name="msapplication-config" content="/browserconfig.xml" />
   <meta name="msapplication-TileColor" content="#254c5c" />
-  <meta name="theme-color" content="#254c5c" />
 
   <!-- Apple Touch Icons -->
-  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png" />
-  <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png" />
-  <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png" />
-  <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-icon-57x57.png" />
+  <link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-icon-60x60.png" />
+  <link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-icon-72x72.png" />
+  <link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-icon-76x76.png" />
   <link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-icon-114x114.png" />
+  <link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-icon-120x120.png" />
+  <link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-icon-144x144.png" />
+  <link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-icon-152x152.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-icon-180x180.png" />
 
-  <!-- Favicons -->
-  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+  <!-- Android & Favicons -->
   <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="36x36" href="/icons/android-icon-36x36.png" />
+  <link rel="icon" type="image/png" sizes="48x48" href="/icons/android-icon-48x48.png" />
+  <link rel="icon" type="image/png" sizes="72x72" href="/icons/android-icon-72x72.png" />
+  <link rel="icon" type="image/png" sizes="96x96" href="/icons/android-icon-96x96.png" />
+  <link rel="icon" type="image/png" sizes="144x144" href="/icons/android-icon-144x144.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="/icons/android-icon-192x192.png" />
+  <link rel="icon" type="image/png" sizes="512x512" href="/icons/android-icon-512x512.png" />
 
+  <!-- Couleur du thème -->
+  <meta name="theme-color" content="#254c5c" />
   <title>NYVYA PHONE AI</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
   <!-- Fonts stylés : Playfair Display (premium titre), Montserrat (moderne corps) -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-
   <style>
     :root {
       --gold: #b89460;
@@ -54,7 +64,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      margin: 48px 0 0 0;
+      margin: 48px 0 0px 0;
     }
     .logo-img {
       width: 170px;
@@ -121,6 +131,7 @@
       font-weight: 700;
       border: 2px solid var(--gold);
     }
+    /* --- FONCTIONNALITÉS MENU --- */
     #menu-principal {
       background: var(--petrol);
       border-radius: 28px;
@@ -152,18 +163,20 @@
       background: #f0e4d5;
       color: #a18341;
     }
+    /* --- Responsive --- */
     @media (max-width: 540px) {
       .header { font-size: 1.18em; }
       .logo-img { width: 108px; height: 108px; }
-      .main-card { padding: 26px 2vw 16px 2vw; margin-top: 35px; }
-      #menu-principal { padding: 22px 0 30px 0; margin: 34px auto 20px auto; }
-      .fonction-btn { padding: 0.9em 0.2em; font-size: 0.96em; }
+      .main-card { padding: 26px 2vw 16px 2vw; margin-top: 35px;}
+      #menu-principal { padding: 22px 0 30px 0; margin: 34px auto 20px auto;}
+      .fonction-btn { padding: 0.9em 0.2em; font-size: 0.96em;}
     }
+    /* Section IA personnalisée et formulaires */
     .form-section {
       margin: 1.2em 0 0.3em 0;
       color: var(--gold);
     }
-    label { font-weight: 700; color: var(--gold); }
+    label { font-weight: 700; color: var(--gold);}
     input, textarea, select {
       padding: 9px 13px;
       border-radius: 10px;
@@ -178,7 +191,7 @@
       background: #faf7f2;
       border-radius: 13px;
       margin: 14px 0;
-      padding: 1em;
+      padding: 1em 1em;
       font-size: 1.09em;
       color: #253344;
     }
@@ -191,7 +204,6 @@
   <div class="logo-box">
     <img src="Logo nyvya.PNG" alt="Logo NYVYA" class="logo-img">
   </div>
-
   <!-- PAGE ACCUEIL & MENU PRINCIPAL -->
   <div class="main-card" id="main-card">
     <div id="accueil">
@@ -202,64 +214,60 @@
         <button class="menu-btn" onclick="setMode('ecrit')">⌨️ Mode écrit</button>
       </div>
     </div>
-
+    <!-- MENU PRINCIPAL -->
     <div id="menu-principal" style="display:none;">
       <div class="main-title center" style="margin-bottom:16px;">CHOISIS UNE FONCTIONNALITÉ :</div>
       <button class="fonction-btn" onclick="ouvrirFonction('waouh')">✨ Assistant personnalisé / Packs Waouh</button>
-      <button class="fonction-btn" onclick="ouvrirFonction('special')">👥 Espace spécialisé</button>
-      <button class="fonction-btn" onclick="ouvrirFonction('traduction')">🌍 Traduction vocale</button>
-      <button class="fonction-btn" onclick="ouvrirFonction('actus')">📰 Résumé Actus</button>
-      <button class="fonction-btn" onclick="ouvrirFonction('histoire')">📖 Histoire IA</button>
-      <button class="fonction-btn" onclick="ouvrirFonction('berceuse')">🎶 Berceuse IA</button>
-      <button class="fonction-btn" onclick="ouvrirFonction('jeu')">🧩 Jeu / Devinette</button>
-      <button class="fonction-btn" onclick="ouvrirFonction('blague')">😂 Blague IA</button>
+      <button class="fonction-btn" onclick="ouvrirFonction('special')">👥 Espace spécialisé : Parents, Nounous, Crèches, Enfants, Éducateur</button>
+      <button class="fonction-btn" onclick="ouvrirFonction('traduction')">🌍 Traduction vocale bi-directionnelle</button>
+      <button class="fonction-btn" onclick="ouvrirFonction('actus')">📰 Résumé Actus 5-10min (tout sujet, tout pays)</button>
+      <button class="fonction-btn" onclick="ouvrirFonction('histoire')">📖 Histoire IA ultra-personnalisée</button>
+      <button class="fonction-btn" onclick="ouvrirFonction('berceuse')">🎶 Berceuse IA personnalisée</button>
+      <button class="fonction-btn" onclick="ouvrirFonction('jeu')">🧩 Jeu / Devinette IA</button>
+      <button class="fonction-btn" onclick="ouvrirFonction('blague')">😂 Blague sur mesure IA</button>
       <button class="menu-btn back-btn" onclick="retourAccueil()" style="width:94%;">⏪ Retour mode</button>
     </div>
-
+    <!-- ZONE FONCTIONNELLE (affichage dynamique) -->
     <div id="zone"></div>
-  </div>
-
-  <script>
+  </div> 
+    <script>
+    // GESTION DU MODE (vocal ou écrit)
     let mode = "";
     function setMode(m) {
       mode = m;
       document.getElementById("accueil").style.display = "none";
       document.getElementById("menu-principal").style.display = "";
-      document.getElementById("zone").innerHTML = "";
-      window.scrollTo(0,0);
+      document.getElementById("zone").innerHTML = ""; // reset zone
     }
     function retourAccueil() {
       document.getElementById("menu-principal").style.display = "none";
       document.getElementById("accueil").style.display = "";
       document.getElementById("zone").innerHTML = "";
-      window.scrollTo(0,0);
     }
     function retourMenu() {
       document.getElementById("menu-principal").style.display = "";
       document.getElementById("zone").innerHTML = "";
       window.scrollTo(0,0);
     }
-
+    // NAVIGATION ENTRE LES FONCTIONNALITÉS
     function ouvrirFonction(type) {
       let html = "";
-
       if (type === "waouh") {
         html = `
           <div class="form-section">
             <div class="main-title" style="font-size:1.15em;">✨ Assistant personnalisé / Packs Waouh</div>
-            <label>Décris ton besoin, ta situation, ton problème ou ton objectif précis :</label>
-            <textarea id="waouhDemande" placeholder="Exemple : Je prépare un voyage, j'ai un souci pro, j'ai besoin d'un conseil sur la santé, etc."></textarea>
-            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Obtenir la solution personnalisée</button>
+            <label>Décris ton besoin, ta situation, ton problème ou ton objectif précis :</label>
+            <textarea id="waouhDemande" placeholder="Exemple : Je prépare un voyage, j'ai un souci pro, j'ai besoin d'un conseil sur la santé, etc."></textarea>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Obtenir la solution personnalisée</button>
             <div class="result-zone" id="waouhResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
         `;
-      }
-      else if (type === "special") {
+      } else if (type === "special") {
         html = `
           <div class="form-section">
             <div class="main-title" style="font-size:1.09em;">👥 Espace spécialisé : Parents, Nounous, Crèches, Enfants, Éducateur</div>
-            <label>Choisis ta zone :</label>
+            <label>Choisis ta zone :</label>
             <select id="zoneSpec">
               <option>Parents</option>
               <option>Nounous</option>
@@ -268,91 +276,84 @@
               <option>Éducateur</option>
             </select>
             <textarea id="specialDemande" placeholder="Décris ta question, besoin, ou demande (éducation, suivi enfant, problème concret, etc.)"></textarea>
-            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Obtenir l'aide personnalisée</button>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Obtenir l'aide personnalisée</button>
             <div class="result-zone" id="specialResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
         `;
-      }
-      else if (type === "traduction") {
+      } else if (type === "traduction") {
         html = `
           <div class="form-section">
             <div class="main-title" style="font-size:1.09em;">🌍 Traduction vocale bi-directionnelle</div>
-            <label>De quelle langue à quelle langue ?</label>
-            <input id="tradLangues" placeholder="Ex : français vers arabe" />
-            <label>Texte ou message à traduire :</label>
+            <label>De quelle langue à quelle langue ?</label>
+            <input id="tradLangues" placeholder="Ex : français vers arabe" />
+            <label>Texte ou message à traduire :</label>
             <textarea id="tradTexte" placeholder="Écris ou dicte ici…"></textarea>
-            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Traduire</button>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Traduire</button>
             <div class="result-zone" id="traductionResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
         `;
-      }
-      else if (type === "actus") {
+      } else if (type === "actus") {
         html = `
           <div class="form-section">
             <div class="main-title" style="font-size:1.09em;">📰 Résumé Actus 5–10min</div>
-            <label>Quel sujet, pays, thème ou actualité précise ?</label>
-            <input id="actusSujet" placeholder="Ex : météo France, foot, économie, info monde, etc."/>
-            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Obtenir le résumé</button>
+            <label>Quel sujet, pays, thème ou actualité précise ?</label>
+            <input id="actusSujet" placeholder="Ex : météo France, foot, économie, info monde, etc."/>
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Obtenir le résumé</button>
             <div class="result-zone" id="actusResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
         `;
-      }
-      else if (type === "histoire") {
+      } else if (type === "histoire") {
         html = `
           <div class="form-section">
             <div class="main-title">📖 Histoire IA ultra-personnalisée</div>
-            <label>Pour qui, quel âge, thème ou ambiance ?</label>
-            <input id="histoireCible" placeholder="Ex : Sara, 7 ans, adore les animaux, ton drôle…" />
-            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Générer l'histoire</button>
+            <label>Pour qui, quel âge, thème, style ou ambiance ?</label>
+            <input id="histoireCible" placeholder="Ex : Sara, 7 ans, adore les animaux, ton drôle…" />
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Générer l'histoire</button>
             <div class="result-zone" id="histoireResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
         `;
-      }
-      else if (type === "berceuse") {
+      } else if (type === "berceuse") {
         html = `
           <div class="form-section">
             <div class="main-title">🎶 Berceuse IA personnalisée</div>
-            <label>Pour qui, âge, humeur ou style ?</label>
-            <input id="berceuseCible" placeholder="Ex : Wharys, 2 ans, ambiance pluie, style doux…" />
-            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Générer la berceuse</button>
+            <label>Pour qui, âge, humeur, bruit de fond, style… ?</label>
+            <input id="berceuseCible" placeholder="Ex : Wharys, 2 ans, ambiance pluie, triste…" />
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Générer la berceuse</button>
             <div class="result-zone" id="berceuseResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
         `;
-      }
-      else if (type === "jeu") {
+      } else if (type === "jeu") {
         html = `
           <div class="form-section">
             <div class="main-title">🧩 Jeu / Devinette IA</div>
-            <label>Type ou niveau (enfant, quiz, etc.) :</label>
-            <input id="jeuType" placeholder="Ex : Devinette pour enfant de 6 ans" />
-            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Lancer le jeu</button>
+            <label>Type de jeu ou devinette (facile, quiz, enfant, etc.) :</label>
+            <input id="jeuType" placeholder="Ex : Devinette pour enfant de 6 ans" />
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Lancer le jeu / devinette</button>
             <div class="result-zone" id="jeuResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
         `;
-      }
-      else if (type === "blague") {
+      } else if (type === "blague") {
         html = `
           <div class="form-section">
             <div class="main-title">😂 Blague sur mesure IA</div>
-            <label>Type, public ou sujet :</label>
-            <input id="blagueCible" placeholder="Ex : Blague courte pour enfant sur le foot" />
-            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Générer la blague</button>
+            <label>Type, sujet, public, prénom, style… :</label>
+            <input id="blagueCible" placeholder="Ex : Blague courte pour enfant sur le foot" />
+            <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Générer la blague</button>
             <div class="result-zone" id="blagueResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
           </div>
         `;
       }
-
       document.getElementById("menu-principal").style.display = "none";
       document.getElementById("zone").innerHTML = html;
       window.scrollTo(0,0);
     }
   </script>
 </body>
-</html>
+</html> 
