@@ -448,6 +448,116 @@
         document.getElementById("bouton-micro").classList.remove("active");
       }
     }
-  </script>
+  </script> 
+  <!-- ... tout ton code précédent ... -->
+
+<!-- SECTION TEST IA - Ajoutée sans rien supprimer -->
+<div id="nyvya-ia-lab" style="background:#fff4db; border-top:3px solid #b89460; margin:70px 0 0 0; padding:44px 0;">
+  <div style="max-width:550px;margin:auto;text-align:center;">
+    <h2 style="font-family:'Playfair Display',serif;font-size:1.3em;color:#b89460;">LABORATOIRE IA – TESTS FONCTIONNALITÉS</h2>
+    <div style="margin:30px 0;">
+      <button onclick="nyvyaIAToggle('chat')" class="menu-btn">💬 Chat IA Texte</button>
+      <button onclick="nyvyaIAToggle('vocalEcrit')" class="menu-btn">🎤 IA Vocal (écrit)</button>
+      <button onclick="nyvyaIAToggle('vocalParle')" class="menu-btn">🔊 IA Vocal (parle)</button>
+      <button onclick="nyvyaIAToggle('jeu')" class="menu-btn">🧩 Jeu IA</button>
+      <button onclick="nyvyaIAToggle('faq')" class="menu-btn">📚 Résumé/FAQ/Trad</button>
+    </div>
+    <div id="nyvya-ia-zone"></div>
+  </div>
+</div>
+
+<script>
+function nyvyaIAToggle(type) {
+  let html = "";
+  if (type === "chat") {
+    html = `<h3>💬 Chat IA texte</h3>
+      <input id="nyvya-chat-input" placeholder="Tape ta question..." style="width:80%;margin-bottom:9px;">
+      <button class="menu-btn" onclick="nyvyaChatDemo()">Envoyer</button>
+      <div id="nyvya-chat-result" style="background:#f7f3ef;margin:12px 0 0 0;padding:14px 7px;border-radius:9px;"></div>`;
+  }
+  if (type === "vocalEcrit") {
+    html = `<h3>🎤 IA Vocal (tu parles, il écrit)</h3>
+      <button class="menu-btn" onclick="nyvyaSpeechToText()">Parler</button>
+      <div id="nyvya-speech-result" style="background:#f7f3ef;margin:12px 0 0 0;padding:14px 7px;border-radius:9px;"></div>`;
+  }
+  if (type === "vocalParle") {
+    html = `<h3>🔊 IA Vocal (tu parles, il parle)</h3>
+      <button class="menu-btn" onclick="nyvyaSpeechToSpeech()">Parler</button>
+      <div id="nyvya-s2s-result" style="background:#f7f3ef;margin:12px 0 0 0;padding:14px 7px;border-radius:9px;"></div>`;
+  }
+  if (type === "jeu") {
+    html = `<h3>🧩 Jeu / Devinette IA</h3>
+      <button class="menu-btn" onclick="nyvyaJeuDemo()">Nouvelle devinette</button>
+      <div id="nyvya-jeu-result" style="background:#f7f3ef;margin:12px 0 0 0;padding:14px 7px;border-radius:9px;"></div>`;
+  }
+  if (type === "faq") {
+    html = `<h3>📚 Résumé/FAQ/Trad IA</h3>
+      <input id="nyvya-faq-input" placeholder="Tape ta question ou ton texte à traduire..." style="width:80%;margin-bottom:9px;">
+      <button class="menu-btn" onclick="nyvyaFaqDemo()">Obtenir</button>
+      <div id="nyvya-faq-result" style="background:#f7f3ef;margin:12px 0 0 0;padding:14px 7px;border-radius:9px;"></div>`;
+  }
+  document.getElementById('nyvya-ia-zone').innerHTML = html;
+}
+
+// Démo chat IA texte
+function nyvyaChatDemo() {
+  let q = document.getElementById('nyvya-chat-input').value;
+  document.getElementById('nyvya-chat-result').innerText = "Réponse IA simulée : " + q.split('').reverse().join('');
+}
+
+// Démo vocal => texte (reconnaissance vocale)
+function nyvyaSpeechToText() {
+  let res = document.getElementById('nyvya-speech-result');
+  if (!('webkitSpeechRecognition' in window)) {
+    res.innerText = "Désolé, la reconnaissance vocale n'est pas supportée ici.";
+    return;
+  }
+  var recognition = new webkitSpeechRecognition();
+  recognition.lang = "fr-FR";
+  recognition.onresult = function(event) {
+    var text = event.results[0][0].transcript;
+    res.innerText = "Texte reconnu : " + text;
+  }
+  recognition.start();
+  res.innerText = "Parle maintenant...";
+}
+
+// Démo vocal => vocal (reconnaissance + synthèse vocale)
+function nyvyaSpeechToSpeech() {
+  let res = document.getElementById('nyvya-s2s-result');
+  if (!('webkitSpeechRecognition' in window) || !('speechSynthesis' in window)) {
+    res.innerText = "Désolé, cette fonctionnalité n'est pas supportée ici.";
+    return;
+  }
+  var recognition = new webkitSpeechRecognition();
+  recognition.lang = "fr-FR";
+  recognition.onresult = function(event) {
+    var text = event.results[0][0].transcript;
+    res.innerText = "Je répète à voix haute : " + text;
+    var msg = new SpeechSynthesisUtterance(text);
+    msg.lang = "fr-FR";
+    speechSynthesis.speak(msg);
+  }
+  recognition.start();
+  res.innerText = "Parle maintenant...";
+}
+
+// Démo jeu devinette IA
+function nyvyaJeuDemo() {
+  let devinettes = [
+    "Je suis jaune, je brille dans le ciel et je rime avec lion. Qui suis-je ? (Soleil)",
+    "J'ai des branches mais pas de feuilles. Qui suis-je ? (Rivière)",
+    "Je vole sans ailes, je pleure sans yeux. Qui suis-je ? (Nuage)"
+  ];
+  let n = Math.floor(Math.random() * devinettes.length);
+  document.getElementById('nyvya-jeu-result').innerText = devinettes[n];
+}
+
+// Démo résumé/FAQ/traduction IA
+function nyvyaFaqDemo() {
+  let txt = document.getElementById('nyvya-faq-input').value;
+  document.getElementById('nyvya-faq-result').innerText = "Traitement IA fictif pour : " + txt;
+}
+</script> 
 </body>
 </html>
