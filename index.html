@@ -196,6 +196,30 @@
       color: #253344;
     }
     .center { text-align: center; }
+    /* -------- BOUTON MICRO -------- */
+    #bouton-micro {
+      display: none;
+      position: fixed;
+      right: 17px;
+      bottom: 26px;
+      z-index: 50;
+      background: linear-gradient(90deg,#43e97b 0%,#38f9d7 100%);
+      border-radius: 50%;
+      width: 65px;
+      height: 65px;
+      box-shadow: 0 5px 20px #38f9d7bb;
+      border: none;
+      color: #fff;
+      font-size: 2.3em;
+      justify-content: center;
+      align-items: center;
+      display: flex;
+    }
+    #bouton-micro.active {
+      background: linear-gradient(90deg,#254c5c 0%,#b89460 100%);
+      color: #fff;
+      box-shadow: 0 5px 30px #b8946099;
+    }
   </style>
 </head>
 <body>
@@ -229,8 +253,12 @@
     </div>
     <!-- ZONE FONCTIONNELLE (affichage dynamique) -->
     <div id="zone"></div>
-  </div> 
-    <script>
+  </div>
+  
+  <!-- BOUTON MICRO STICKY (Vocal) -->
+  <button id="bouton-micro" onclick="lancerEcouteVocale()" title="Micro NYVYA">🎤</button>
+  
+  <script>
     // GESTION DU MODE (vocal ou écrit)
     let mode = "";
     function setMode(m) {
@@ -238,11 +266,21 @@
       document.getElementById("accueil").style.display = "none";
       document.getElementById("menu-principal").style.display = "";
       document.getElementById("zone").innerHTML = ""; // reset zone
+      // Affiche ou cache le micro selon le mode
+      if (mode === "vocal") {
+        document.getElementById("bouton-micro").style.display = "flex";
+        lancerEcouteVocale();
+      } else {
+        document.getElementById("bouton-micro").style.display = "none";
+        stopVocal();
+      }
     }
     function retourAccueil() {
       document.getElementById("menu-principal").style.display = "none";
       document.getElementById("accueil").style.display = "";
       document.getElementById("zone").innerHTML = "";
+      document.getElementById("bouton-micro").style.display = "none";
+      stopVocal();
     }
     function retourMenu() {
       document.getElementById("menu-principal").style.display = "";
@@ -299,7 +337,7 @@
           <div class="form-section">
             <div class="main-title" style="font-size:1.09em;">📰 Résumé Actus 5–10min</div>
             <label>Quel sujet, pays, thème ou actualité précise ?</label>
-            <input id="actusSujet" placeholder="Ex : météo France, foot, économie, info monde, etc."/>
+                        <input id="actusSujet" placeholder="Ex : météo France, foot, économie, info monde, etc."/>
             <button class="menu-btn" onclick="alert('Fonction IA à brancher ici !')">Obtenir le résumé</button>
             <div class="result-zone" id="actusResult"></div>
             <button class="menu-btn back-btn" onclick="retourMenu()">⬅️ Retour</button>
@@ -354,6 +392,62 @@
       document.getElementById("zone").innerHTML = html;
       window.scrollTo(0,0);
     }
+
+    // --------- GESTION MICRO & VOCAL ---------
+
+    // API Web Speech (Reconnaissance vocale) : ultra simple pour MVP !
+    let recognition;
+    let microActif = false;
+
+    function lancerEcouteVocale() {
+      if (!('webkitSpeechRecognition' in window)) {
+        alert("La reconnaissance vocale n'est pas supportée sur ce navigateur.");
+        return;
+      }
+      if (!recognition) {
+        recognition = new webkitSpeechRecognition();
+        recognition.lang = "fr-FR";
+        recognition.continuous = false;
+        recognition.interimResults = false;
+        recognition.onresult = function(event) {
+          const res = event.results[0][0].transcript.trim().toLowerCase();
+          // Switch mode à l'écrit par la voix
+          if (["écrit", "ecrit", "stop", "mode écrit", "mode ecrit"].includes(res)) {
+            setMode('ecrit');
+            return;
+          }
+          // Ici tu peux ajouter le traitement du vocal selon le contexte/menu affiché
+          alert("Message entendu : " + res + "\n(Fonctionnalité vocale complète à brancher)");
+        };
+        recognition.onerror = function(event) {
+          document.getElementById("bouton-micro").classList.remove("active");
+          microActif = false;
+        };
+        recognition.onend = function() {
+          document.getElementById("bouton-micro").classList.remove("active");
+          microActif = false;
+        };
+      }
+      // Active micro
+      if (!microActif) {
+        recognition.start();
+        microActif = true;
+        document.getElementById("bouton-micro").classList.add("active");
+      } else {
+        recognition.stop();
+        microActif = false;
+        document.getElementById("bouton-micro").classList.remove("active");
+      }
+    }
+
+    // Désactive micro si mode non vocal
+    function stopVocal() {
+      if (recognition && microActif) {
+        recognition.stop();
+        microActif = false;
+        document.getElementById("bouton-micro").classList.remove("active");
+      }
+    }
   </script>
 </body>
-</html> 
+</html>
